@@ -25,11 +25,22 @@
   --tag-reverse-ink: #fffefa;
 
   /* ---- Routing rails: colour as a DOMAIN, never as flavour. ----
-     On a real tag the full-bleed colour band is a routing instruction read by
-     a human at three metres — priority, class, short-connection, crew, hazard.
-     It is legible before any glyph is. Use exactly one rail per package, and
-     only when that routing state is genuinely in the record. */
-  --tag-rail-standard: #1c8a4a;  /* economy / normal routing */
+     Use exactly one rail per package, and only when that routing state is
+     genuinely in the record.
+
+     ⚠️ HONESTY NOTE — this vocabulary is OURS, not IATA's.
+     Exactly one coloured rail on a real tag is standardised, and it is not a
+     priority marking: a GREEN edge identifies hold baggage checked in at an EU
+     airport, so destination customs can separate intra-EU bags from
+     third-country bags. IATA makes it a compliance requirement.
+     Priority / class-of-service markings are per-carrier conventions, and for
+     short connections IATA's own guidance recommends a remark, a SEPARATE
+     sticker, or a system attribute — explicitly not a standardised rail.
+     Historically it was the pre-1990 string tags that used elaborate colour
+     schemes so handlers could read a destination at a glance.
+     So: treat the six below as a designed key for information packages, not as
+     an aviation standard. Label it as an invention wherever you ship it. */
+  --tag-rail-standard: #1c8a4a;  /* normal routing (echoes the EU customs green) */
   --tag-rail-priority: #e8471f;  /* expedite / rush / SLA breach */
   --tag-rail-business: #14489c;  /* business / premium / crew */
   --tag-rail-transfer: #f2b706;  /* interline / short connection */
