@@ -249,6 +249,7 @@ body.tag-body {
 
 .tag-card[data-domain]:not([data-domain="default"]),
 .tag-row[data-domain]:not([data-domain="default"]) {
+  border-left-style: solid;
   border-left-width: 8px;
   border-left-color: var(--tag-domain-mark, var(--tag-ink));
 }

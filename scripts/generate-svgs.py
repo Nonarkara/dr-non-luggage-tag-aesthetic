@@ -146,13 +146,13 @@ def hero() -> None:
     <rect x="1070" y="348" width="130" height="92"/>
   </g>
   <text x="754" y="376" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="700" letter-spacing="1.6" fill="{INK}">CLAIM / ใบรับ</text>
-  <text x="754" y="400" font-family="ui-monospace, Courier New, monospace" font-size="13" fill="{INK}">{LPN}</text>
+    <text x="754" y="400" font-family="ui-monospace, Courier New, monospace" font-size="12" fill="{INK}">{LPN}</text>
   <text x="754" y="422" font-family="Arial, Helvetica, sans-serif" font-size="11" fill="{INK}">BKK · TG676</text>
   <text x="934" y="376" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="700" letter-spacing="1.6" fill="{INK}">STUB 1</text>
-  <text x="934" y="400" font-family="ui-monospace, Courier New, monospace" font-size="13" fill="{INK}">{LPN[-6:]}</text>
+  <text x="934" y="400" font-family="ui-monospace, Courier New, monospace" font-size="12" fill="{INK}">{LPN}</text>
   <text x="934" y="422" font-family="Arial, Helvetica, sans-serif" font-size="11" fill="{INK}">LOAD</text>
   <text x="1082" y="376" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="700" letter-spacing="1.6" fill="{INK}">STUB 2</text>
-  <text x="1082" y="400" font-family="ui-monospace, Courier New, monospace" font-size="13" fill="{INK}">{LPN[-6:]}</text>
+  <text x="1082" y="400" font-family="ui-monospace, Courier New, monospace" font-size="12" fill="{INK}">{LPN}</text>
   <text x="1082" y="422" font-family="Arial, Helvetica, sans-serif" font-size="11" fill="{INK}">XFER</text>
   <!-- size declaration: this object is a closed package -->
   <text x="176" y="448" font-family="Arial, Helvetica, sans-serif" font-size="10" letter-spacing="1.8" fill="{INK}">FACE 50.8–54 mm · PO COMPLETE · IF PRESENT, REQUIRED</text>
