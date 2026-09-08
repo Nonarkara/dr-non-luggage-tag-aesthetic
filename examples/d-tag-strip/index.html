@@ -1,0 +1,241 @@
+<!-- SPDX-License-Identifier: MIT -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Example D — the strip, at full ink</title>
+  <link rel="stylesheet" href="../../components/tag-system.css"/>
+  <link rel="stylesheet" href="../../components/tag-strip.css"/>
+</head>
+<body class="tag-body">
+  <main class="tag-page">
+    <p class="tag-kicker">Example D · Strip anatomy · routing rails</p>
+    <h1 class="tag-h1">A tag is a third ink, not a wisp.</h1>
+    <p class="tag-lead">
+      Same tokens, same four ranks, same PO gate. The difference is density:
+      solid bands with type reversed out, full-bleed routing rails, real Code&nbsp;128
+      symbols, and the licence plate repeated down the strip so a torn fragment
+      still identifies the object. Point a phone camera at any barcode below — they scan.
+    </p>
+
+    <section class="tag-section">
+      <h2>Routing states</h2>
+      <div class="tag-shelf">
+
+        <!-- ============ STANDARD ============ -->
+        <!-- size: package · domain: economy routing -->
+        <article class="tag-strip" data-rail="standard">
+          <div class="tag-zone tag-barcode-block">
+            <div data-barcode="0217123456" data-barcode-module="2" data-barcode-height="54"></div>
+            <p class="tag-barcode-hr">0217123456</p>
+          </div>
+
+          <div class="tag-zone">
+            <dl class="tag-microline">
+              <dt>Carrier</dt><dd>TG 676</dd>
+              <dt>Date</dt><dd>08SEP</dd>
+            </dl>
+          </div>
+
+          <!-- size: primary · domain: IATA destination -->
+          <div class="tag-zone">
+            <div class="tag-dest-row">
+              <h3 class="tag-dest">BKK</h3>
+              <p class="tag-vertical">0217123456</p>
+            </div>
+          </div>
+
+          <!-- size: primary · domain: destination, reversed for glance-legibility -->
+          <div class="tag-band">
+            <div class="tag-dest-row">
+              <h3 class="tag-dest">BKK</h3>
+              <span class="tag-seq">080</span>
+            </div>
+          </div>
+
+          <div class="tag-zone">
+            <dl class="tag-microline">
+              <dt>Point</dt><dd>ARRIVAL</dd>
+              <dt>Belt</dt><dd>22</dd>
+            </dl>
+            <!-- size: fallback · domain: human subject -->
+            <p class="tag-fallback">Arkara/Non</p>
+          </div>
+
+          <!-- domain: tear-tolerant redundancy. Any surviving fragment identifies the bag. -->
+          <div class="tag-zone tag-perf">
+            <div class="tag-repeat">
+              <div><span>TG 0217</span><span>123456</span></div>
+              <div><span>TG 0217</span><span>123456</span></div>
+              <div><span>TG 0217</span><span>123456</span></div>
+              <div><span>TG 0217</span><span>123456</span></div>
+            </div>
+          </div>
+
+          <div class="tag-zone tag-barcode-block">
+            <div data-barcode="0217123456" data-barcode-module="1" data-barcode-height="30"></div>
+          </div>
+        </article>
+
+        <!-- ============ PRIORITY ============ -->
+        <article class="tag-strip" data-rail="priority">
+          <div class="tag-zone tag-barcode-block">
+            <div data-barcode="0749881204" data-barcode-module="2" data-barcode-height="54"></div>
+            <p class="tag-barcode-hr">0749881204</p>
+          </div>
+
+          <div class="tag-zone">
+            <dl class="tag-microline">
+              <dt>Carrier</dt><dd>KL 1592</dd>
+              <dt>Date</dt><dd>30SEP</dd>
+            </dl>
+          </div>
+
+          <!-- The routing state outranks everything, so it takes the band. -->
+          <div class="tag-band" data-band="rail">
+            <p class="tag-fallback">Priority · expedite</p>
+          </div>
+
+          <div class="tag-zone">
+            <div class="tag-dest-row">
+              <h3 class="tag-dest">JFK</h3>
+              <p class="tag-vertical">17740</p>
+            </div>
+          </div>
+
+          <div class="tag-band">
+            <div class="tag-dest-row">
+              <h3 class="tag-dest">JFK</h3>
+              <span class="tag-seq" data-rail-fill="true">070</span>
+            </div>
+          </div>
+
+          <div class="tag-zone">
+            <dl class="tag-microline">
+              <dt>Point</dt><dd>TRANSFER</dd>
+              <dt>SLA</dt><dd>25 MIN</dd>
+            </dl>
+            <p class="tag-fallback">Vrieling/Lois</p>
+          </div>
+
+          <div class="tag-zone tag-perf">
+            <div class="tag-repeat">
+              <div><span>KL 0749</span><span>881204</span></div>
+              <div><span>KL 0749</span><span>881204</span></div>
+              <div><span>KL 0749</span><span>881204</span></div>
+              <div><span>KL 0749</span><span>881204</span></div>
+            </div>
+          </div>
+
+          <div class="tag-zone tag-barcode-block">
+            <div data-barcode="0749881204" data-barcode-module="1" data-barcode-height="30"></div>
+          </div>
+        </article>
+
+        <!-- ============ TRANSFER ============ -->
+        <article class="tag-strip" data-rail="transfer">
+          <div class="tag-zone tag-barcode-block">
+            <div data-barcode="0088676520" data-barcode-module="2" data-barcode-height="54"></div>
+            <p class="tag-barcode-hr">0088676520</p>
+          </div>
+
+          <div class="tag-zone">
+            <dl class="tag-microline">
+              <dt>Carrier</dt><dd>KL 1566</dd>
+              <dt>Date</dt><dd>05FEB</dd>
+            </dl>
+          </div>
+
+          <div class="tag-zone">
+            <div class="tag-dest-row">
+              <h3 class="tag-dest">AMS</h3>
+              <p class="tag-vertical">0088676520</p>
+            </div>
+          </div>
+
+          <div class="tag-band">
+            <div class="tag-dest-row">
+              <h3 class="tag-dest">AMS</h3>
+              <span class="tag-seq" data-rail-fill="true">080</span>
+            </div>
+          </div>
+
+          <div class="tag-zone">
+            <dl class="tag-microline">
+              <dt>Class</dt><dd>ECONOMY</dd>
+              <dt>Weight</dt><dd>8 KG</dd>
+            </dl>
+            <p class="tag-fallback">Vrieling/Lois</p>
+          </div>
+
+          <div class="tag-zone tag-perf">
+            <div class="tag-repeat">
+              <div><span>KL 0088</span><span>676520</span></div>
+              <div><span>KL 0088</span><span>676520</span></div>
+              <div><span>KL 0088</span><span>676520</span></div>
+              <div><span>KL 0088</span><span>676520</span></div>
+            </div>
+          </div>
+
+          <div class="tag-zone tag-barcode-block">
+            <div data-barcode="0088676520" data-barcode-module="1" data-barcode-height="30"></div>
+          </div>
+        </article>
+
+        <!-- ============ HAZARD ============ -->
+        <article class="tag-strip" data-rail="hazard">
+          <div class="tag-zone tag-barcode-block">
+            <div data-barcode="0125550199" data-barcode-module="2" data-barcode-height="54"></div>
+            <p class="tag-barcode-hr">0125550199</p>
+          </div>
+
+          <div class="tag-band" data-band="rail">
+            <p class="tag-fallback">Hold · do not load</p>
+          </div>
+
+          <div class="tag-zone">
+            <div class="tag-dest-row">
+              <h3 class="tag-dest">HKT</h3>
+              <p class="tag-vertical">DG-2199</p>
+            </div>
+          </div>
+
+          <div class="tag-band">
+            <div class="tag-dest-row">
+              <h3 class="tag-dest">HKT</h3>
+              <span class="tag-seq" data-rail-fill="true">001</span>
+            </div>
+          </div>
+
+          <div class="tag-zone">
+            <dl class="tag-microline">
+              <dt>Point</dt><dd>QUARANTINE</dd>
+              <dt>Ref</dt><dd>DGR 4.2</dd>
+            </dl>
+            <p class="tag-fallback">Screening/Hold</p>
+          </div>
+
+          <div class="tag-zone tag-perf">
+            <div class="tag-repeat">
+              <div><span>TG 0125</span><span>550199</span></div>
+              <div><span>TG 0125</span><span>550199</span></div>
+              <div><span>TG 0125</span><span>550199</span></div>
+              <div><span>TG 0125</span><span>550199</span></div>
+            </div>
+          </div>
+
+          <div class="tag-zone tag-barcode-block">
+            <div data-barcode="0125550199" data-barcode-module="1" data-barcode-height="30"></div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <p><a href="../gallery/index.html">Gallery</a> · <a href="../../docs/why-it-is-beautiful.md">Why it is beautiful</a></p>
+  </main>
+  <script type="module" src="../../components/barcode.js"></script>
+  <script src="../../components/tag-system.js"></script>
+</body>
+</html>

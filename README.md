@@ -17,13 +17,17 @@ By [Dr Non Arkaraprasertkul](https://github.com/Nonarkara) (Dr Non / Nonarkara).
 
 ## Philosophy
 
-Every element in the complete package — physical tag, digital UI, system output — must carry **explicit, non-redundant meaning**. No decorative, filler, motivational, or optional text or visual.
+Every element in the complete package — physical tag, digital UI, system output — must carry **explicit meaning**. No decorative, filler, motivational, or optional text or visual.
+
+**It is not minimalism, and the difference is measurable.** Minimalism removes until little is left. A tag removes until nothing *unnecessary* is left, then packs the rest to the edge — roughly **a third of its area is solid ink**. Restraint means nothing unnecessary, not nothing there. If the result looks calm and roomy, it is a memo. → [`docs/why-it-is-beautiful.md`](docs/why-it-is-beautiful.md)
 
 **PO Completeness:** if it is present, it is required. If it is required, absence breaks the system.
 
 **Size is information.** Type hierarchy is human scanning order under time pressure, not ornament.
 
-**Domain is information.** IATA three-letter destination, 10-digit LPN, carrier, material durability, sustainability lifecycle — each is a named domain. Colour exists only when priority, crew, or hazard is actually in the package.
+**Domain is information.** IATA three-letter destination, 10-digit LPN, carrier, material durability, sustainability lifecycle — each is a named domain. Colour exists only when a routing state is actually in the record — but where it exists it is **loud**: a full-bleed rail, never a tint. Colour has the longest legibility range on the object.
+
+**Redundancy is the failure model, not waste.** A real tag prints the licence plate five or six times because the strip gets torn and any surviving fragment must still identify the bag. Repeat the identifier when the medium is lossy and the read matters.
 
 **Hierarchy (mandatory order):**
 
@@ -46,7 +50,18 @@ cd dr-non-luggage-tag-aesthetic
 # no install — open the gallery
 ```
 
-Open `examples/gallery/index.html` in a browser. Copy `design-tokens/tokens.css` and `components/tag-system.css` into your surface. Rebuild **one** object until it is a tag. Run [`docs/critique-checklist.md`](docs/critique-checklist.md).
+Open `examples/gallery/index.html` in a browser — or [`examples/d-tag-strip/index.html`](examples/d-tag-strip/index.html) for the full strip anatomy with routing rails and **real, scannable Code 128** (point a phone at it).
+
+Copy into your surface:
+
+| File | What it gives you |
+|---|---|
+| `design-tokens/tokens.css` | ground, ink, reversal, six routing rails, two spacing scales |
+| `components/tag-system.css` | card, row, doc header, log line |
+| `components/tag-strip.css` | band, rail, perforation, repeat block, vertical type |
+| `components/barcode.js` | real Code 128 (Set C for numeric), no dependencies |
+
+Rebuild **one** object until it is a tag. Run [`docs/critique-checklist.md`](docs/critique-checklist.md) — including the new **(e2) density and presence** gate, which is the one that catches a correct-but-pale result.
 
 Agents: load the skill first. Do not invent a palette.
 

@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <title>Example A — website status card</title>
   <link rel="stylesheet" href="../../components/tag-system.css"/>
+  <link rel="stylesheet" href="../../components/tag-strip.css"/>
 </head>
 <body class="tag-body">
   <main class="tag-page">
@@ -27,7 +28,7 @@
       </div>
       <div>
         <p class="tag-caption">After — PO complete</p>
-        <article class="tag-card" data-domain="default">
+        <article class="tag-card" data-rail="standard">
           <div class="tag-card-face">
             <h2 class="tag-dest">BKK<span class="tag-dest-city">Arrival · 08SEP26</span></h2>
             <ul class="tag-status">
@@ -39,9 +40,13 @@
               <span class="tag-id-label">License plate</span>
               <button class="tag-id-copy" type="button" data-copy="0217123456" data-label="0217123456">0217123456</button>
             </div>
+            <!-- size: secondary · domain: machine-readable LPN. Real Code 128, Set C. -->
+            <div data-barcode="0217123456" data-barcode-module="2" data-barcode-height="46"></div>
             <p class="tag-fallback">Arkara/Non</p>
             <div class="tag-stubs">
-              <div class="tag-stub"><strong>Claim receipt</strong><span class="tag-id">0217123456</span></div>
+              <div class="tag-stub"><strong>Claim</strong><span class="tag-id">0217123456</span></div>
+              <div class="tag-stub"><strong>Claim</strong><span class="tag-id">0217123456</span></div>
+              <div class="tag-stub"><strong>Claim</strong><span class="tag-id">0217123456</span></div>
             </div>
           </div>
         </article>
@@ -49,6 +54,7 @@
     </div>
     <p><a href="../gallery/index.html">Gallery</a></p>
   </main>
+  <script type="module" src="../../components/barcode.js"></script>
   <script src="../../components/tag-system.js"></script>
 </body>
 </html>

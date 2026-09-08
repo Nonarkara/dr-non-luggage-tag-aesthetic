@@ -7,7 +7,7 @@ description: >-
   docs, log line, packaging, or system output. Use when the user wants luggage-tag
   UI, PO Completeness, thermal black-on-white hierarchy, IATA-like destination
   dominance, or to strip decorative noise from an interface.
-version: "2.0"
+version: "3.0"
 license: MIT
 ---
 
@@ -32,6 +32,30 @@ Optional is not a category. If the domain is not in the package, the element is 
 Fail: slogans, filler, motivational copy, emoji, unused badges, “eco” leaves, hero photography, dark-glass inversion of the tag, rainbow accents, decorative manga chrome.
 
 Pass: destination dominant, LPN mono + machine form, context strip, human fallback, stub/receipt, loop/border as attachment.
+
+## Density gate (run immediately after PO)
+
+PO tells you what may stay. Density tells you how it must be set.
+
+1. **Ink.** Does the package carry solid fill — a band, a filled box, a barcode block? Hairlines and type alone fail.
+2. **Reversal before size.** Anything that must outrank its neighbours gets knocked out of a solid band *before* it is scaled up. Reversal is free; size costs measure.
+3. **Tag scale inside, page scale outside.** Inside the object use `--tag-gutter` / `--tag-gap-zone` (~2 mm equivalent). `--tag-space-5`+ is for the document *around* it. Using page scale inside is what makes tags float.
+4. **Rail.** If a routing state exists in the record, it is a full-bleed colour band — never a tint, never a 1-px accent. One rail per package.
+5. **Real barcodes.** Use `components/barcode.js` (Code 128; Set C for numeric, two digits per symbol). Never a CSS gradient — a decorative barcode concedes the marks are ornamental, which is the opposite of the claim.
+
+## Redundancy rule (supersedes "non-redundant" in v2)
+
+Repeat the identifier when the medium is **lossy** and the read is **safety-critical** — a torn strip, a truncated log line, a screenshotted receipt, a number read aloud over a phone. A real tag prints the licence plate five or six times for exactly this reason, and the repetition supplies the strip's rhythm.
+
+Duplicating something because the layout felt bare still fails.
+
+## Colour (supersedes "colour is not a rank")
+
+Colour is not a *type rank* and never replaces size in the scan order. It is a **domain channel with the longest range on the object** — a rail resolves across a hall when the destination code is still a smudge.
+
+Rails in `design-tokens/tokens.css`: `standard` (green), `priority` (red-orange), `business` (blue), `transfer` (amber), `hazard` (dark red), `heavy` (violet). Set with `data-rail="…"`.
+
+Play lives in **combination, not decoration**: rail colour, reversal density, repeat count and rhythm, rotation axis, barcode module width, format. Not in illustration, gradients, glows, or rounded corners.
 
 ## Size and domain (declare in markup)
 
@@ -102,10 +126,11 @@ Before/after: `examples/`. Live preview: `examples/gallery/index.html`.
 ## Critique checklist (all must pass)
 
 (a) PO completeness  
-(b) no noise  
+(b) no noise (decorative duplication fails; failure-model duplication is required)  
 (c) human hierarchy  
 (d) dual encoding  
 (e) size–domain coherence  
+(e2) **density and presence** — solid ink, reversal, tag-scale spacing, real barcodes  
 (f) material/lifecycle  
 (g) evolutionary readiness  
 
@@ -123,3 +148,4 @@ When generating UI or copy:
 2. Include markup comments for size + domain.
 3. Show a closed package (card, row, or log line), not a mood board.
 4. If asked for both a noisy version and a tag version, label Before (fails PO) and After (PO complete).
+5. **Ship it dense.** Load `components/tag-strip.css` for band / rail / perf / repeat, and `components/barcode.js` for real symbols. A correct-but-pale result is a failed result — see `docs/why-it-is-beautiful.md` and `examples/d-tag-strip/`.
