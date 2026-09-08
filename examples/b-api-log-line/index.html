@@ -1,0 +1,35 @@
+<!-- SPDX-License-Identifier: MIT -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Example B — API / log line</title>
+  <link rel="stylesheet" href="../../components/tag-system.css"/>
+</head>
+<body class="tag-body">
+  <main class="tag-page">
+    <p class="tag-kicker">Example B · API response / log line</p>
+    <h1 class="tag-h1">One line. Same package.</h1>
+    <p class="tag-lead">A log line is a tag at 12 pt. Destination first, LPN second, context third, human fallback last. No emoji. No “successfully”.</p>
+
+    <p class="tag-caption">Before — noise</p>
+    <pre class="tag-log">🎉 Woo! Bag processed OK :) status=awesome dest=bangkok? id=null msg="Have a great flight!!" ts=maybe</pre>
+
+    <p class="tag-caption">After — PO complete</p>
+    <pre class="tag-log">BKK  lpn=0217123456  point=LOAD  flt=TG676  date=08SEP26  pax=ARKARA/NON</pre>
+
+    <p class="tag-caption">JSON — same ranks, named domains</p>
+    <pre class="tag-log">{
+  "dest": "BKK",
+  "lpn": "0217123456",
+  "point": "LOAD",
+  "flight": "TG676",
+  "date": "08SEP26",
+  "pax": "ARKARA/NON"
+}</pre>
+    <p>Field names are domains. Do not add <code>vibe</code>, <code>emoji</code>, or duplicate dest as <code>cityNamePretty</code> unless a second domain requires it (and then say why in the schema).</p>
+    <p><a href="../gallery/index.html">Gallery</a></p>
+  </main>
+</body>
+</html>

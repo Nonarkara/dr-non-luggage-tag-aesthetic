@@ -1,0 +1,82 @@
+/* SPDX-License-Identifier: MIT */
+/* Dr Non’s Luggage Tag Aesthetic — design tokens.
+   Ground / ink / type hierarchy / spacing / barcode-mono.
+   Domain colours are extensions, not the default palette. */
+
+:root {
+  /* Material: thermal face stock. Near-white, slightly warm. */
+  --tag-ground: #f7f6f2;
+  --tag-ground-strict: #fffefa;
+  --tag-ink: #111111;
+  --tag-ink-soft: #2a2a2a;
+  --tag-rule: #111111;
+  --tag-focus: #111111;
+
+  /* Type: size IS information. Four ranks only. */
+  --tag-font-dest: "Arial Narrow", "Helvetica Neue Condensed", "Franklin Gothic Medium", Arial, sans-serif;
+  --tag-font-body: Arial, Helvetica, sans-serif;
+  --tag-font-mono: ui-monospace, "Cascadia Mono", "SF Mono", "Courier New", monospace;
+
+  --tag-size-dest: clamp(3.25rem, 14vw, 7.5rem);
+  --tag-lh-dest: 0.82;
+  --tag-track-dest: -0.06em;
+  --tag-weight-dest: 800;
+
+  --tag-size-lpn: 1.125rem;
+  --tag-lh-lpn: 1.2;
+  --tag-track-lpn: 0.18em;
+  --tag-weight-lpn: 500;
+
+  --tag-size-context: 0.8125rem;
+  --tag-lh-context: 1.35;
+  --tag-track-context: 0.06em;
+  --tag-weight-context: 500;
+
+  --tag-size-fallback: 0.75rem;
+  --tag-lh-fallback: 1.3;
+  --tag-track-fallback: 0.14em;
+  --tag-weight-fallback: 700;
+
+  --tag-size-stub: 0.6875rem;
+  --tag-size-meta: 0.625rem;
+  --tag-track-meta: 0.16em;
+
+  /* Spacing: 4 px module, like a barcode module family. */
+  --tag-space-1: 0.25rem;
+  --tag-space-2: 0.5rem;
+  --tag-space-3: 0.75rem;
+  --tag-space-4: 1rem;
+  --tag-space-5: 1.5rem;
+  --tag-space-6: 2rem;
+  --tag-space-7: 3rem;
+  --tag-space-8: 4rem;
+
+  --tag-rule-width: 1.5px;
+  --tag-rule-hair: 1px;
+  --tag-pad: var(--tag-space-5);
+  --tag-max: 72rem;
+  --tag-face-min: 12.7rem; /* ~50.8 mm at 96dpi metaphorical min width on screen */
+
+  /* Barcode-like monospace rules */
+  --tag-barcode-module: 0.125rem;
+  --tag-barcode-height: 4.5rem;
+  --tag-tabular: tabular-nums lining-nums;
+
+  /* Domain extensions — use ONLY when the package includes that domain.
+     Default package is ground + ink. Colour is not a fifth rank. */
+  --tag-domain-priority: #7a3e00; /* expedite / rush / SLA */
+  --tag-domain-crew: #0b3d7a;     /* crew / staff */
+  --tag-domain-hazard: #8b1212;   /* hazard / DG / alert */
+
+  --tag-radius: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  /* Thermal tag stays light. The object does not invert in a dark room.
+     Only the page chrome outside the package may invert — this sheet does not. */
+}
+
+[data-domain="priority"] { --tag-domain-mark: var(--tag-domain-priority); }
+[data-domain="crew"] { --tag-domain-mark: var(--tag-domain-crew); }
+[data-domain="hazard"] { --tag-domain-mark: var(--tag-domain-hazard); }
+[data-domain="default"] { --tag-domain-mark: var(--tag-ink); }

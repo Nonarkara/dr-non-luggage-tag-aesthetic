@@ -1,0 +1,156 @@
+<!-- SPDX-License-Identifier: MIT -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Gallery — Dr Non’s Luggage Tag Aesthetic</title>
+  <link rel="stylesheet" href="../../components/tag-system.css"/>
+</head>
+<body class="tag-body">
+  <main class="tag-page">
+    <p class="tag-kicker">DS · GALLERY · 08SEP26 · MIT</p>
+    <h1 class="tag-dest">BKK<span class="tag-dest-city">Dr Non’s Luggage Tag Aesthetic · ป้ายกระเป๋า</span></h1>
+    <ul class="tag-status">
+      <li><span class="tag-status-key">Package</span>design system</li>
+      <li><span class="tag-status-key">Open</span>local file, no build</li>
+      <li><span class="tag-status-key">Id</span>dr-non-luggage-tag-aesthetic</li>
+    </ul>
+    <nav class="tag-nav">
+      <a href="#tokens">Tokens</a>
+      <a href="#components">Components</a>
+      <a href="#examples">Examples</a>
+      <a href="#diagrams">Diagrams</a>
+      <a href="../../START-HERE.md">START-HERE</a>
+      <a href="../../README.md">README</a>
+    </nav>
+
+    <section class="tag-section" id="tokens">
+      <h2>Tokens — ground, ink, four ranks</h2>
+      <article class="tag-card" data-domain="default">
+        <div class="tag-card-face">
+          <p class="tag-dest">Aa<span class="tag-dest-city">Primary · destination</span></p>
+          <p class="tag-id"><span class="tag-id-label">Secondary · LPN</span>0217123456</p>
+          <ul class="tag-status">
+            <li><span class="tag-status-key">Tertiary</span>TG 676 · 08SEP26</li>
+          </ul>
+          <p class="tag-fallback">Fallback · Arkara/Non</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="tag-section" id="components">
+      <h2>Components — live</h2>
+      <div class="tag-grid">
+        <article class="tag-card" data-domain="default" aria-label="TagCard BKK">
+          <div class="tag-card-face">
+            <h3 class="tag-dest">BKK<span class="tag-dest-city">Bangkok · จุดหมาย</span></h3>
+            <ul class="tag-status">
+              <li><span class="tag-status-key">Carrier</span>TG</li>
+              <li><span class="tag-status-key">Flight</span>676</li>
+              <li><span class="tag-status-key">Date</span>08SEP26</li>
+              <li><span class="tag-status-key">Route</span>NRT–BKK</li>
+            </ul>
+            <div class="tag-id">
+              <span class="tag-id-label">License plate</span>
+              <img class="tag-barcode" src="../../assets/barcode-lpn.svg" alt="Code 128C of 0217123456"/>
+              <button class="tag-id-copy" type="button" data-copy="0217123456" data-label="0217123456">0217123456</button>
+            </div>
+            <p class="tag-fallback">Arkara/Non</p>
+            <div class="tag-stubs">
+              <div class="tag-stub"><strong>Claim / ใบรับ</strong><span class="tag-id">0217123456</span></div>
+              <div class="tag-stub"><strong>Load</strong><span class="tag-id">0217123456</span></div>
+              <div class="tag-stub"><strong>Xfer</strong><span class="tag-id">0217123456</span></div>
+            </div>
+          </div>
+        </article>
+
+        <div>
+          <p class="tag-caption">Dashboard rows</p>
+          <div class="tag-row">
+            <div class="tag-dest">BKK</div>
+            <div class="tag-id">0217123456</div>
+            <ul class="tag-status">
+              <li><span class="tag-status-key">Point</span>ARRIVAL</li>
+              <li><span class="tag-status-key">Flight</span>TG 676</li>
+            </ul>
+            <p class="tag-fallback">Arkara/Non</p>
+          </div>
+          <div class="tag-row" data-domain="priority">
+            <div class="tag-dest">HND</div>
+            <div class="tag-id">2217000042</div>
+            <ul class="tag-status">
+              <li><span class="tag-status-key">Point</span>XFER</li>
+              <li><span class="tag-status-key">Flight</span>TG 660</li>
+            </ul>
+            <p class="tag-fallback">Sato/Mika · expedite</p>
+          </div>
+          <div class="tag-row" data-domain="hazard">
+            <div class="tag-dest">SIN</div>
+            <div class="tag-id">0217999111</div>
+            <ul class="tag-status">
+              <li><span class="tag-status-key">Point</span>HOLD</li>
+              <li><span class="tag-status-key">Domain</span>HAZARD</li>
+            </ul>
+            <p class="tag-fallback">Hold / do not load</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="tag-section" id="examples">
+      <h2>Examples — before / after</h2>
+      <nav class="tag-nav">
+        <a href="../a-website-status-card/index.html">A Website status card</a>
+        <a href="../b-api-log-line/index.html">B API / log line</a>
+        <a href="../c-documentation-header/index.html">C Doc header</a>
+      </nav>
+      <div class="tag-pair">
+        <div>
+          <p class="tag-caption">Before</p>
+          <div class="tag-noise">
+            <p>✨ Welcome back!</p>
+            <h2>Your journey is looking amazing 🚀</h2>
+            <p>Unlock premium tracking. Have a nice day.</p>
+          </div>
+        </div>
+        <div>
+          <p class="tag-caption">After</p>
+          <article class="tag-card">
+            <div class="tag-card-face">
+              <h3 class="tag-dest">BKK<span class="tag-dest-city">Belt 22 · arrival</span></h3>
+              <ul class="tag-status">
+                <li><span class="tag-status-key">Point</span>ARRIVAL</li>
+                <li><span class="tag-status-key">Flight</span>TG 676</li>
+              </ul>
+              <p class="tag-id">0217123456</p>
+              <p class="tag-fallback">Arkara/Non</p>
+            </div>
+          </article>
+        </div>
+      </div>
+      <p class="tag-caption" style="margin-top: 2rem;">Log line</p>
+      <pre class="tag-log">BKK  lpn=0217123456  point=LOAD  flt=TG676  date=08SEP26  pax=ARKARA/NON</pre>
+    </section>
+
+    <section class="tag-section" id="diagrams">
+      <h2>Diagrams</h2>
+      <p class="tag-caption">Anatomy</p>
+      <img class="tag-diagram" src="../../assets/diagrams/anatomy.svg" alt="Anatomy of the white baggage tag with eight labeled domains"/>
+      <p class="tag-caption">Human scan hierarchy</p>
+      <img class="tag-diagram" src="../../assets/diagrams/human-scan-hierarchy.svg" alt="Five-rank human scan order from destination to stubs"/>
+      <p class="tag-caption">PO completeness gate</p>
+      <img class="tag-diagram" src="../../assets/diagrams/po-completeness-gate.svg" alt="Flowchart gate that removes decorative or redundant elements"/>
+      <p class="tag-caption">Website / dashboard mapping</p>
+      <img class="tag-diagram" src="../../assets/diagrams/website-dashboard-mapping.svg" alt="Tag zones mapped to UI components"/>
+      <p class="tag-caption">Evolutionary stack</p>
+      <img class="tag-diagram" src="../../assets/diagrams/evolutionary-stack.svg" alt="Thermal to RFID to reusable electronic bag tag stack"/>
+    </section>
+
+    <footer class="tag-footer">
+      <p>Example LPN 0217123456 is interline + issuer 217 + serial 123456. Not a live bag. MIT. Fork the method, not secrets.</p>
+    </footer>
+  </main>
+  <script src="../../components/tag-system.js"></script>
+</body>
+</html>

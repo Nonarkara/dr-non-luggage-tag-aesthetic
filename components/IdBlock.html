@@ -1,0 +1,23 @@
+<!-- SPDX-License-Identifier: MIT -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>IdBlock</title>
+  <link rel="stylesheet" href="tag-system.css"/>
+</head>
+<body class="tag-body">
+  <main class="tag-page">
+    <p class="tag-kicker">Component · IdBlock</p>
+    <!-- size: secondary · domain: 10-digit LPN / stable object key -->
+    <div class="tag-id">
+      <span class="tag-id-label">License plate · เลขป้าย</span>
+      <img class="tag-barcode" src="../assets/barcode-lpn.svg" alt="Code 128C of 0217123456"/>
+      <button class="tag-id-copy" type="button" data-copy="0217123456" data-label="0217123456">0217123456</button>
+    </div>
+    <p>Human-readable digits sit under the bars. Dual encoding. JS copy is optional; the number remains if JS is off.</p>
+  </main>
+  <script src="tag-system.js"></script>
+</body>
+</html>
