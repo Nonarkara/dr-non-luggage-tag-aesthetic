@@ -15,6 +15,14 @@ The tag aesthetic is **not universal**, and applying it to the wrong reader is t
 
 Console and Index take it natively. Civic takes it with lower density and larger targets. **Editorial and Institutional do not** — a tag-styled deck reads as a receipt. See [`docs/registers.md`](docs/registers.md).
 
+## 1b. Then pick a stock
+
+**Stock A — thermal** (default): white face, ground and ink, machine-first. A barcode does the sorting; the human layer is the fallback. Everything below assumes this stock.
+
+**Stock B — printed**: two or three spot inks on coloured stock. **There is no barcode**, so colour, scale, and composition carry the sorting job a scanner does on Stock A. Declare `data-stock="printed"` and a `data-domain`.
+
+Stock B has *harder* limits, not fewer: three inks maximum counting the stock · flat colour only, a press cannot blend · every ink names a domain · the overprint is the only texture · rotation is a second reading axis, not a flourish · still four ranks, only a wider ratio. See [`docs/stocks.md`](docs/stocks.md).
+
 ## 2. PO Completeness — the gate, run first
 
 For every element (type, colour, rule, icon, sentence, image):
@@ -48,7 +56,7 @@ Default package is `--tag-ground` + `--tag-ink`. Do not invent a palette.
 
 - `border-radius` other than `0` or a true circle that carries meaning
 - `box-shadow` except `inset` and `:focus-visible` — printed ink casts none
-- Gradients between hues, `backdrop-filter`, glassmorphism, dark-glass inversion of the tag
+- Gradients that *blend*. A two-domain split uses hard stops that meet at one position (`A 0 46%, B 46% 100%`) — that is a press mark, not a gradient. `backdrop-filter`, glassmorphism, and dark-glass inversion stay banned outright
 - Inter, Roboto, Poppins, Montserrat, Open Sans, Lato, Geist, Space Grotesk
 - Emoji, sparkle pills, "Welcome back", slogans, motivational copy
 - A fifth type rank invented as "caption personality"

@@ -1,0 +1,109 @@
+/* SPDX-License-Identifier: MIT */
+/* Dr Non's Luggage Tag Aesthetic — STOCK B: PRINTED.
+ *
+ * Letterpress / flexo: two or three spot inks, flat, on coloured stock.
+ * There is no barcode on this stock, so colour, scale, and composition
+ * carry the sorting job a scanner does on Stock A. See docs/stocks.md.
+ *
+ * Load AFTER tokens.css. This sheet overrides the ground and the scale
+ * range; it does not override the law.
+ *
+ *   <link rel="stylesheet" href="design-tokens/tokens.css">
+ *   <link rel="stylesheet" href="design-tokens/stock-printed.css">
+ *   <body data-stock="printed" data-domain="carrier">
+ *
+ * THREE INKS MAXIMUM, and the stock counts as one.
+ */
+
+:root {
+  /* ── Stocks. The face colour is ink #1. ───────────────────────────── */
+  --stock-cream:  #f2ece0;
+  --stock-manila: #e6d9bd;
+  --stock-kraft:  #d3bf9a;
+  --stock-white:  #f7f6f2;   /* shared with Stock A */
+  --stock-grey:   #d9d7d0;
+
+  /* ── Spot inks. Each is a DOMAIN, never a mood. ───────────────────── */
+  /* Carrier / route identity — the full-face field on a real tag.      */
+  --ink-atlantic: #0b4f8f;   /* trunk carrier, long-haul          */
+  --ink-signal:   #c8102e;   /* flag carrier, priority routing    */
+  --ink-transit:  #e2621b;   /* interline / transfer              */
+  --ink-tropic:   #00786b;   /* regional / short-haul             */
+  --ink-rose:     #d6336c;   /* charter / seasonal                */
+  --ink-ochre:    #e8a417;   /* cargo / hold — DARK type only     */
+  --ink-forest:   #14612f;   /* domestic                          */
+  --ink-slate:    #3d4348;   /* crew, staff, service              */
+
+  /* Process inks: the two that print on top of any field. */
+  --ink-black:    #14120e;   /* the type ink                      */
+  --ink-overprint:#c8102e;   /* the struck serial, second pass    */
+
+  /* ── Scale. Same four ranks; the RATIO widens because no machine
+   *    reads this face. Extreme size is not a fifth rank.            */
+  /* Sized to the FACE, not the room — a tag's type is set to the tag.
+     cqi resolves against .pt-face's inline size (container-type below);
+     the vw value is the fallback where container queries are unavailable. */
+  --printed-size-dest:     clamp(2.75rem, 34cqi, 16rem);
+  --printed-size-dest-fb:  clamp(2.75rem, 12vw, 7rem);
+  --printed-lh-dest:       0.76;
+  --printed-track-dest:    -0.045em;
+  --printed-weight-dest:   800;
+
+  --printed-size-city:     clamp(0.75rem, 4.5cqi, 1.25rem);  /* the sub-line under the code */
+  --printed-track-city:    0.34em;
+
+  --printed-size-serial:   clamp(1.125rem, 11cqi, 2.5rem);   /* the struck number */
+  --printed-track-serial:  0.02em;
+
+  --printed-size-context:  0.8125rem;
+  --printed-track-context: 0.16em;
+
+  --printed-size-micro:    0.625rem;
+  --printed-track-micro:   0.2em;
+
+  /* ── Composition primitives ───────────────────────────────────────── */
+  --printed-band:        1.25rem;   /* carrier livery band height      */
+  --printed-band-stripe: 0.375rem;  /* one stripe inside a band        */
+  --printed-rule:        2px;       /* printed rules are heavier than thermal hairlines */
+  --printed-rule-heavy:  5px;
+  --printed-punch:       2.25rem;   /* the hole */
+  --printed-punch-ring:  0.3125rem;
+  --printed-pad:         1.5rem;
+  --printed-face-w:      21rem;     /* portrait tag face */
+
+  /* Overprint: evidence of a second press pass, not a distress filter.
+     Real misregistration is small. Anything larger is a costume. */
+  --printed-overprint-x:   2px;
+  --printed-overprint-y:   -1px;
+  --printed-overprint-rot: -1.5deg;
+}
+
+/* ── Stock selection ─────────────────────────────────────────────────── */
+[data-stock="printed"] {
+  background: var(--stock-cream);
+  color: var(--ink-black);
+  --tag-ground: var(--stock-cream);
+  --tag-ink: var(--ink-black);
+}
+
+[data-stock="printed"][data-face="manila"] { background: var(--stock-manila); --tag-ground: var(--stock-manila); }
+[data-stock="printed"][data-face="kraft"]  { background: var(--stock-kraft);  --tag-ground: var(--stock-kraft);  }
+[data-stock="printed"][data-face="white"]  { background: var(--stock-white);  --tag-ground: var(--stock-white);  }
+[data-stock="printed"][data-face="grey"]   { background: var(--stock-grey);   --tag-ground: var(--stock-grey);   }
+
+/* ── Domain fields. The ink IS the domain. ───────────────────────────── */
+/* Each sets --field (the ground) and --on-field (type that survives it). */
+[data-domain="atlantic"] { --field: var(--ink-atlantic); --on-field: var(--stock-cream); }
+[data-domain="signal"]   { --field: var(--ink-signal);   --on-field: var(--stock-cream); }
+[data-domain="transit"]  { --field: var(--ink-transit);  --on-field: var(--ink-black);   }
+[data-domain="tropic"]   { --field: var(--ink-tropic);   --on-field: var(--stock-cream); }
+[data-domain="rose"]     { --field: var(--ink-rose);     --on-field: var(--stock-cream); }
+[data-domain="forest"]   { --field: var(--ink-forest);   --on-field: var(--stock-cream); }
+[data-domain="slate"]    { --field: var(--ink-slate);    --on-field: var(--stock-cream); }
+
+/* Ochre takes dark type only. White on yellow fails contrast and is banned
+   outright in the NYCTA system for the same reason. */
+[data-domain="ochre"]    { --field: var(--ink-ochre);    --on-field: var(--ink-black);   }
+
+/* No domain declared → no field. Colour is never a default. */
+[data-stock="printed"]:not([data-domain]) { --field: transparent; --on-field: var(--ink-black); }

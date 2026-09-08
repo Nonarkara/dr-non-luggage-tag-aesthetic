@@ -32,6 +32,8 @@ It is **not** an IATA manual, not an airline product, not a passenger database, 
 | [`docs/philosophy.md`](docs/philosophy.md) | Why the tag is the law |
 | [`docs/lineage.md`](docs/lineage.md) | Why this is good design — Rams, Vignelli, and what the tag adds |
 | [`docs/registers.md`](docs/registers.md) | **When this aesthetic is wrong.** Read before any CSS |
+| [`docs/stocks.md`](docs/stocks.md) | Thermal or printed. Where the colour and the scale come from |
+| [`components/printed.html`](components/printed.html) | Stock B gallery — seven compositions |
 | [`docs/grid.md`](docs/grid.md) | Every edge resolves to another edge |
 | [`tools/tag-audit.mjs`](tools/tag-audit.mjs) | The gate, runnable. `--strict` in CI |
 | [`docs/anatomy.md`](docs/anatomy.md) | Eight zones |
