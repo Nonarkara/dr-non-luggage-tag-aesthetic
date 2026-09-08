@@ -1,0 +1,54 @@
+<!-- SPDX-License-Identifier: MIT -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Example A — website status card</title>
+  <link rel="stylesheet" href="../../components/tag-system.css"/>
+</head>
+<body class="tag-body">
+  <main class="tag-page">
+    <p class="tag-kicker">Example A · Website status card</p>
+    <h1 class="tag-h1">Noise removed. Destination remains.</h1>
+    <p class="tag-lead">A status card is a bag tag on a webpage. One destination, one id, one context strip, one human fallback, one receipt. Everything else is lost luggage.</p>
+
+    <div class="tag-pair">
+      <div>
+        <p class="tag-caption">Before — fails PO</p>
+        <div class="tag-noise">
+          <p>✨ Welcome back to SkyFlow!</p>
+          <h2>Your journey is looking amazing 🚀</h2>
+          <p>We’re so excited to have you. Unlock premium tracking. Don’t forget to smile.</p>
+          <p><strong>Bag:</strong> maybe BKK? · <em>id pending</em></p>
+          <p>Status: all systems go 💚 · have a nice day</p>
+          <button type="button">Learn more</button>
+        </div>
+      </div>
+      <div>
+        <p class="tag-caption">After — PO complete</p>
+        <article class="tag-card" data-domain="default">
+          <div class="tag-card-face">
+            <h2 class="tag-dest">BKK<span class="tag-dest-city">Arrival · 08SEP26</span></h2>
+            <ul class="tag-status">
+              <li><span class="tag-status-key">Point</span>ARRIVAL</li>
+              <li><span class="tag-status-key">Belt</span>22</li>
+              <li><span class="tag-status-key">Flight</span>TG 676</li>
+            </ul>
+            <div class="tag-id">
+              <span class="tag-id-label">License plate</span>
+              <button class="tag-id-copy" type="button" data-copy="0217123456" data-label="0217123456">0217123456</button>
+            </div>
+            <p class="tag-fallback">Arkara/Non</p>
+            <div class="tag-stubs">
+              <div class="tag-stub"><strong>Claim receipt</strong><span class="tag-id">0217123456</span></div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+    <p><a href="../gallery/index.html">Gallery</a></p>
+  </main>
+  <script src="../../components/tag-system.js"></script>
+</body>
+</html>

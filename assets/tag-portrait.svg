@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 640" role="img" aria-labelledby="title">
+  <title id="title">Portrait thermal bag tag, example BKK / 0217123456</title>
+  <rect width="280" height="640" fill="#F7F6F2"/>
+  <rect x="8" y="8" width="264" height="624" fill="#FFFEFA" stroke="#111111" stroke-width="2"/>
+  <circle cx="140" cy="36" r="14" fill="none" stroke="#111111" stroke-width="2"/>
+  <circle cx="140" cy="36" r="5" fill="#F7F6F2"/>
+  <line x1="24" y1="60" x2="256" y2="60" stroke="#111111" stroke-width="1" stroke-dasharray="3 4"/>
+  <rect x="14.00" y="48.00" width="10.00" height="1.00" fill="#111111"/>
+    <rect x="14.00" y="49.50" width="10.00" height="0.50" fill="#111111"/>
+    <rect x="14.00" y="51.00" width="10.00" height="1.50" fill="#111111"/>
+    <rect x="14.00" y="53.50" width="10.00" height="1.00" fill="#111111"/>
+    <rect x="14.00" y="55.50" width="10.00" height="1.00" fill="#111111"/>
+    <rect x="14.00" y="57.50" width="10.00" height="1.00" fill="#111111"/>
+    <rect x="14.00" y="59.00" width="10.00" height="0.50" fill="#111111"/>
+    <rect x="14.00" y="60.50" width="10.00" height="1.50" fill="#111111"/>
+    <rect x="14.00" y="63.00" width="10.00" height="1.00" fill="#111111"/>
+    <rect x="14.00" y="64.50" width="10.00" height="0.50" fill="#111111"/>
+    <rect x="14.00" y="65.50" width="10.00" height="1.00" fill="#111111"/>
+    <rect x="14.00" y="67.50" width="10.00" height="1.50" fill="#111111"/>
+    <rect x="14.00" y="70.00" width="10.00" height="0.50" fill="#111111"/>
+    <rect x="14.00" y="72.00" width="10.00" height="0.50" fill="#111111"/>
+    <rect x="14.00" y="73.00" width="10.00" height="1.00" fill="#111111"/>
+    <rect x="14.00" y="75.50" width="10.00" height="1.50" fill="#111111"/>
+    <rect x="14.00" y="78.50" width="10.00" height="0.50" fill="#111111"/>
+    <rect x="14.00" y="79.50" width="10.00" height="1.00" fill="#111111"/>
+    <rect x="14.00" y="81.00" width="10.00" height="1.00" fill="#111111"/>
+    <rect x="14.00" y="84.00" width="10.00" height="0.50" fill="#111111"/>
+    <rect x="14.00" y="85.00" width="10.00" height="0.50" fill="#111111"/>
+    <rect x="14.00" y="86.50" width="10.00" height="1.00" fill="#111111"/>
+    <rect x="14.00" y="89.00" width="10.00" height="1.50" fill="#111111"/>
+    <rect x="14.00" y="91.00" width="10.00" height="0.50" fill="#111111"/>
+    <rect x="14.00" y="92.00" width="10.00" height="1.00" fill="#111111"/>
+  <text x="32" y="150" font-family="Arial Narrow, Arial, Helvetica, sans-serif" font-size="92" font-weight="800" letter-spacing="-4" fill="#111111">BKK</text>
+  <text x="34" y="176" font-family="Arial, Helvetica, sans-serif" font-size="11" letter-spacing="3" fill="#111111">BANGKOK · จุดหมาย</text>
+  <text x="34" y="208" font-family="ui-monospace, Courier New, monospace" font-size="13" fill="#111111">TG 676</text>
+  <text x="34" y="228" font-family="ui-monospace, Courier New, monospace" font-size="13" fill="#111111">08SEP26  NRT–BKK</text>
+  <text x="34" y="256" font-family="Arial, Helvetica, sans-serif" font-size="13" font-weight="700" letter-spacing="1.4" fill="#111111">ARKARA/NON</text>
+  <rect x="28.00" y="268.00" width="1.56" height="56.00" fill="#111111"/>
+    <rect x="30.34" y="268.00" width="0.78" height="56.00" fill="#111111"/>
+    <rect x="32.68" y="268.00" width="2.34" height="56.00" fill="#111111"/>
+    <rect x="36.58" y="268.00" width="1.56" height="56.00" fill="#111111"/>
+    <rect x="39.70" y="268.00" width="1.56" height="56.00" fill="#111111"/>
+    <rect x="42.82" y="268.00" width="1.56" height="56.00" fill="#111111"/>
+    <rect x="45.16" y="268.00" width="0.78" height="56.00" fill="#111111"/>
+    <rect x="47.50" y="268.00" width="2.34" height="56.00" fill="#111111"/>
+    <rect x="51.40" y="268.00" width="1.56" height="56.00" fill="#111111"/>
+    <rect x="53.74" y="268.00" width="0.78" height="56.00" fill="#111111"/>
+    <rect x="55.30" y="268.00" width="1.56" height="56.00" fill="#111111"/>
+    <rect x="58.42" y="268.00" width="2.34" height="56.00" fill="#111111"/>
+    <rect x="62.32" y="268.00" width="0.78" height="56.00" fill="#111111"/>
+    <rect x="65.44" y="268.00" width="0.78" height="56.00" fill="#111111"/>
+    <rect x="67.00" y="268.00" width="1.56" height="56.00" fill="#111111"/>
+    <rect x="70.90" y="268.00" width="2.34" height="56.00" fill="#111111"/>
+    <rect x="75.58" y="268.00" width="0.78" height="56.00" fill="#111111"/>
+    <rect x="77.14" y="268.00" width="1.56" height="56.00" fill="#111111"/>
+    <rect x="79.48" y="268.00" width="1.56" height="56.00" fill="#111111"/>
+    <rect x="84.16" y="268.00" width="0.78" height="56.00" fill="#111111"/>
+    <rect x="85.72" y="268.00" width="0.78" height="56.00" fill="#111111"/>
+    <rect x="88.06" y="268.00" width="1.56" height="56.00" fill="#111111"/>
+    <rect x="91.96" y="268.00" width="2.34" height="56.00" fill="#111111"/>
+    <rect x="95.08" y="268.00" width="0.78" height="56.00" fill="#111111"/>
+    <rect x="96.64" y="268.00" width="1.56" height="56.00" fill="#111111"/>
+  <text x="28" y="344" font-family="ui-monospace, Courier New, monospace" font-size="14" letter-spacing="1.2" fill="#111111">0217123456</text>
+  <g fill="none" stroke="#111111" stroke-width="1.25">
+    <rect x="28" y="372" width="224" height="64"/>
+    <rect x="28" y="448" width="224" height="64"/>
+    <rect x="28" y="524" width="224" height="72"/>
+  </g>
+  <text x="40" y="396" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="700" fill="#111111">CLAIM / ใบรับกระเป๋า</text>
+  <text x="40" y="418" font-family="ui-monospace, Courier New, monospace" font-size="12" fill="#111111">0217123456</text>
+  <text x="40" y="472" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="700" fill="#111111">STUB · LOAD</text>
+  <text x="40" y="494" font-family="ui-monospace, Courier New, monospace" font-size="12" fill="#111111">0217123456</text>
+  <text x="40" y="548" font-family="Arial, Helvetica, sans-serif" font-size="11" font-weight="700" fill="#111111">STUB · TRANSFER</text>
+  <text x="40" y="570" font-family="ui-monospace, Courier New, monospace" font-size="12" fill="#111111">0217123456</text>
+  <text x="40" y="614" font-family="Arial, Helvetica, sans-serif" font-size="9" letter-spacing="1" fill="#111111">EXAMPLE · NOT A LIVE BAG</text>
+</svg>

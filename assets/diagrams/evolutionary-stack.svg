@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 560" role="img" aria-labelledby="title">
+  <title id="title">Evolutionary stack from thermal paper to reusable electronic tags</title>
+  <rect width="980" height="560" fill="#F7F6F2"/>
+  <text x="40" y="36" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="2" fill="#111111">EVOLUTIONARY STACK · ชั้นวิวัฒนาการ</text>
+  <text x="40" y="58" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111111">Later layers add a domain. They do not delete earlier ones until the whole network can read them.</text>
+  <g font-family="Arial, Helvetica, sans-serif" fill="#111111">
+    
+    <rect x="40" y="96" width="64" height="56" fill="#111111"/>
+    <text x="72" y="132" text-anchor="middle" font-size="18" font-weight="700" fill="#FFFEFA">1</text>
+    <rect x="104" y="96" width="836" height="56" fill="#FFFEFA" stroke="#111111" stroke-width="1.25"/>
+    <text x="124" y="120" font-size="14" font-weight="700">THERMAL PAPER</text>
+    <text x="124" y="140" font-size="12">Short-haul, controlled indoor. Cheapest substrate. Print fades; moisture fails it.</text>
+    <rect x="40" y="160" width="64" height="56" fill="#111111"/>
+    <text x="72" y="196" text-anchor="middle" font-size="18" font-weight="700" fill="#FFFEFA">2</text>
+    <rect x="104" y="160" width="836" height="56" fill="#FFFEFA" stroke="#111111" stroke-width="1.25"/>
+    <text x="124" y="184" font-size="14" font-weight="700">SYNTHETIC</text>
+    <text x="124" y="204" font-size="12">Long-haul / humid. Waterproof, abrasion-resistant facestock. Same print, harder life.</text>
+    <rect x="40" y="224" width="64" height="56" fill="#111111"/>
+    <text x="72" y="260" text-anchor="middle" font-size="18" font-weight="700" fill="#FFFEFA">3</text>
+    <rect x="104" y="224" width="836" height="56" fill="#FFFEFA" stroke="#111111" stroke-width="1.25"/>
+    <text x="124" y="248" font-size="14" font-weight="700">PP / PE LAMINATE</text>
+    <text x="124" y="268" font-size="12">Most common durable loop tag. Film over thermal coat. Tear and scuff domain.</text>
+    <rect x="40" y="288" width="64" height="56" fill="#111111"/>
+    <text x="72" y="324" text-anchor="middle" font-size="18" font-weight="700" fill="#FFFEFA">4</text>
+    <rect x="104" y="288" width="836" height="56" fill="#FFFEFA" stroke="#111111" stroke-width="1.25"/>
+    <text x="124" y="312" font-size="14" font-weight="700">FREEZER-GRADE</text>
+    <text x="124" y="332" font-size="12">Cold-chain / winter tarmac. Adhesive is the information: it must hold below freezing.</text>
+    <rect x="40" y="352" width="64" height="56" fill="#111111"/>
+    <text x="72" y="388" text-anchor="middle" font-size="18" font-weight="700" fill="#FFFEFA">5</text>
+    <rect x="104" y="352" width="836" height="56" fill="#FFFEFA" stroke="#111111" stroke-width="1.25"/>
+    <text x="124" y="376" font-size="14" font-weight="700">RFID INLAY</text>
+    <text x="124" y="396" font-size="12">UHF EPC Gen2 / ISO 18000-6C (IATA RP1740C). Dual ID: barcode still present.</text>
+    <rect x="40" y="416" width="64" height="56" fill="#111111"/>
+    <text x="72" y="452" text-anchor="middle" font-size="18" font-weight="700" fill="#FFFEFA">6</text>
+    <rect x="104" y="416" width="836" height="56" fill="#FFFEFA" stroke="#111111" stroke-width="1.25"/>
+    <text x="124" y="440" font-size="14" font-weight="700">EBT / REUSABLE</text>
+    <text x="124" y="460" font-size="12">Electronic / permanent tag (IATA RP1754). Lifecycle domain: reuse, battery, recycle.</text>
+  </g>
+  <text x="40" y="500" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111111">Vanhoenacker (2012): RFID cannot replace the printed ABT until most airports can handle it — dual encoding is the migration rule.</text>
+  <text x="40" y="524" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111111">Sustainability is a functional domain (reuse cycles, recycle plan, no-residue adhesive), not an eco ornament.</text>
+</svg>

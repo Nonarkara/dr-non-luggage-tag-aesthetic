@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 520" role="img" aria-labelledby="title">
+  <title id="title">Baggage tag zones mapped onto website and dashboard surfaces</title>
+  <rect width="980" height="520" fill="#F7F6F2"/>
+  <text x="40" y="36" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="2" fill="#111111">TAG → INTERFACE MAP · จากป้ายสู่จอ</text>
+  <text x="40" y="58" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111111">Same hierarchy. Different substrate. Do not invent a second visual language.</text>
+
+  <g font-family="Arial, Helvetica, sans-serif" fill="#111111">
+    <text x="40" y="92" font-size="12" font-weight="700" letter-spacing="2">PHYSICAL TAG</text>
+    <text x="520" y="92" font-size="12" font-weight="700" letter-spacing="2">WEBSITE / DASHBOARD / DOC / LOG</text>
+
+    <rect x="40" y="108" width="200" height="52" fill="#FFFEFA" stroke="#111111" stroke-width="2"/>
+    <text x="52" y="132" font-size="20" font-weight="800">BKK</text>
+    <text x="52" y="150" font-size="10">DestinationHero</text>
+    <path d="M250 134 H500" stroke="#111111" stroke-width="1.25" marker-end="url(#arr)"/>
+    <rect x="520" y="108" width="420" height="52" fill="#FFFEFA" stroke="#111111" stroke-width="2"/>
+    <text x="536" y="132" font-size="16" font-weight="800">Page title · route · status noun</text>
+    <text x="536" y="150" font-size="11">The one fact a stressed human must get in &lt;1 s</text>
+
+    <rect x="40" y="176" width="200" height="52" fill="#FFFEFA" stroke="#111111" stroke-width="1.5"/>
+    <text x="52" y="198" font-family="ui-monospace, Courier New, monospace" font-size="12">0217123456</text>
+    <text x="52" y="216" font-size="10">IdBlock + barcode</text>
+    <path d="M250 202 H500" stroke="#111111" stroke-width="1.25"/>
+    <rect x="520" y="176" width="420" height="52" fill="#FFFEFA" stroke="#111111" stroke-width="1.5"/>
+    <text x="536" y="198" font-size="13" font-weight="700">Stable ID · request id · object key</text>
+    <text x="536" y="216" font-size="11">Monospace. Copyable. Dual-encoded (human + machine)</text>
+
+    <rect x="40" y="244" width="200" height="52" fill="#FFFEFA" stroke="#111111" stroke-width="1.25"/>
+    <text x="52" y="266" font-size="12">TG 676 · 08SEP26</text>
+    <text x="52" y="284" font-size="10">StatusStrip</text>
+    <path d="M250 270 H500" stroke="#111111" stroke-width="1.25"/>
+    <rect x="520" y="244" width="420" height="52" fill="#FFFEFA" stroke="#111111" stroke-width="1.25"/>
+    <text x="536" y="266" font-size="13" font-weight="700">Owner · timestamp · environment</text>
+    <text x="536" y="284" font-size="11">Enough to act without opening another pane</text>
+
+    <rect x="40" y="312" width="200" height="52" fill="#FFFEFA" stroke="#111111" stroke-width="1.25"/>
+    <text x="52" y="334" font-size="12">ARKARA/NON</text>
+    <text x="52" y="352" font-size="10">Fallback line</text>
+    <path d="M250 338 H500" stroke="#111111" stroke-width="1.25"/>
+    <rect x="520" y="312" width="420" height="52" fill="#FFFEFA" stroke="#111111" stroke-width="1.25"/>
+    <text x="536" y="334" font-size="13" font-weight="700">Human-readable subject</text>
+    <text x="536" y="352" font-size="11">Name, title, or summary if IDs are unreadable</text>
+
+    <rect x="40" y="380" width="200" height="52" fill="#FFFEFA" stroke="#111111" stroke-width="1"/>
+    <text x="52" y="402" font-size="12">CLAIM · STUB</text>
+    <text x="52" y="420" font-size="10">StubBackup</text>
+    <path d="M250 406 H500" stroke="#111111" stroke-width="1.25"/>
+    <rect x="520" y="380" width="420" height="52" fill="#FFFEFA" stroke="#111111" stroke-width="1"/>
+    <text x="536" y="402" font-size="13" font-weight="700">Receipt · permalink · export · audit</text>
+    <text x="536" y="420" font-size="11">A copy that still identifies the object offline</text>
+  </g>
+  <text x="40" y="468" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111111">TagCard = the closed package on a site. Dashboard row = the same package at list density. Log line = the same package at one line.</text>
+  <text x="40" y="492" font-family="Arial, Helvetica, sans-serif" font-size="12" fill="#111111">Do not add a hero slogan. The destination *is* the hero.</text>
+</svg>

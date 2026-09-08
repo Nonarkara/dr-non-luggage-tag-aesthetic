@@ -1,0 +1,41 @@
+<!-- SPDX-License-Identifier: MIT -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Dashboard row</title>
+  <link rel="stylesheet" href="tag-system.css"/>
+</head>
+<body class="tag-body">
+  <main class="tag-page">
+    <p class="tag-kicker">Component · DashboardRow</p>
+    <!-- size: list density · domain: same closed package as TagCard -->
+    <div class="tag-row" data-domain="default">
+      <div class="tag-dest">BKK</div>
+      <div>
+        <span class="tag-id-label">LPN</span>
+        <div class="tag-id">0217123456</div>
+      </div>
+      <ul class="tag-status">
+        <li><span class="tag-status-key">Flight</span>TG 676</li>
+        <li><span class="tag-status-key">Point</span>LOAD</li>
+      </ul>
+      <p class="tag-fallback">Arkara/Non</p>
+    </div>
+    <div class="tag-row" data-domain="priority">
+      <div class="tag-dest">HND</div>
+      <div>
+        <span class="tag-id-label">LPN · expedite</span>
+        <div class="tag-id">2217000042</div>
+      </div>
+      <ul class="tag-status">
+        <li><span class="tag-status-key">Flight</span>TG 660</li>
+        <li><span class="tag-status-key">Point</span>XFER</li>
+      </ul>
+      <p class="tag-fallback">Sato/Mika</p>
+    </div>
+    <p>Priority row uses domain colour only because the package is an expedite tag (lead digit 2 analogue). Not a hover accent.</p>
+  </main>
+</body>
+</html>

@@ -1,0 +1,379 @@
+/* SPDX-License-Identifier: MIT */
+/* Component surfaces. Each class maps to a tag zone. */
+
+@import url("../design-tokens/tokens.css");
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  background: var(--tag-ground);
+  color: var(--tag-ink);
+}
+
+body.tag-body {
+  margin: 0;
+  background: var(--tag-ground);
+  color: var(--tag-ink);
+  font-family: var(--tag-font-body);
+  line-height: 1.45;
+}
+
+.tag-page {
+  max-width: var(--tag-max);
+  margin: 0 auto;
+  padding: var(--tag-space-6) var(--tag-space-5) var(--tag-space-8);
+}
+
+.tag-kicker {
+  font-size: var(--tag-size-meta);
+  font-weight: 700;
+  letter-spacing: var(--tag-track-meta);
+  text-transform: uppercase;
+  margin: 0 0 var(--tag-space-3);
+}
+
+.tag-h1 {
+  font-family: var(--tag-font-dest);
+  font-size: clamp(2rem, 6vw, 3.25rem);
+  font-weight: var(--tag-weight-dest);
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  margin: 0 0 var(--tag-space-3);
+}
+
+.tag-lead {
+  font-size: 1rem;
+  max-width: 42rem;
+  margin: 0 0 var(--tag-space-6);
+}
+
+.tag-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--tag-space-3) var(--tag-space-4);
+  margin: var(--tag-space-5) 0 var(--tag-space-7);
+  padding: var(--tag-space-3) 0;
+  border-top: var(--tag-rule-hair) solid var(--tag-rule);
+  border-bottom: var(--tag-rule-hair) solid var(--tag-rule);
+  font-size: var(--tag-size-context);
+  letter-spacing: var(--tag-track-context);
+}
+
+.tag-nav a {
+  color: var(--tag-ink);
+  text-decoration: none;
+  border-bottom: var(--tag-rule-hair) solid transparent;
+}
+
+.tag-nav a:hover,
+.tag-nav a:focus-visible {
+  border-bottom-color: var(--tag-ink);
+}
+
+/* —— DestinationHero —— size: primary · domain: IATA / destination noun */
+.tag-dest {
+  font-family: var(--tag-font-dest);
+  font-size: var(--tag-size-dest);
+  font-weight: var(--tag-weight-dest);
+  letter-spacing: var(--tag-track-dest);
+  line-height: var(--tag-lh-dest);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.tag-dest-city {
+  display: block;
+  font-family: var(--tag-font-body);
+  font-size: var(--tag-size-context);
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  margin-top: var(--tag-space-2);
+  text-transform: uppercase;
+}
+
+/* —— IdBlock —— size: secondary · domain: LPN / object key */
+.tag-id {
+  font-family: var(--tag-font-mono);
+  font-size: var(--tag-size-lpn);
+  font-weight: var(--tag-weight-lpn);
+  letter-spacing: var(--tag-track-lpn);
+  font-variant-numeric: var(--tag-tabular);
+  margin: 0;
+}
+
+.tag-id-label {
+  display: block;
+  font-family: var(--tag-font-body);
+  font-size: var(--tag-size-meta);
+  font-weight: 700;
+  letter-spacing: var(--tag-track-meta);
+  text-transform: uppercase;
+  margin-bottom: var(--tag-space-1);
+}
+
+.tag-id-copy {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--tag-space-2);
+  background: transparent;
+  color: inherit;
+  border: var(--tag-rule-hair) solid var(--tag-rule);
+  padding: var(--tag-space-1) var(--tag-space-2);
+  font: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+}
+
+.tag-id-copy:focus-visible {
+  outline: 2px solid var(--tag-ink);
+  outline-offset: 2px;
+}
+
+.tag-barcode {
+  display: block;
+  width: min(100%, 22rem);
+  height: auto;
+  margin: var(--tag-space-2) 0;
+}
+
+/* CSS facsimile used only when no SVG is inlined — visual weight, not a scan target */
+.tag-barcode-facsimile {
+  height: var(--tag-barcode-height);
+  width: min(100%, 22rem);
+  background: repeating-linear-gradient(
+    90deg,
+    var(--tag-ink) 0 2px,
+    transparent 2px 3px,
+    var(--tag-ink) 3px 5px,
+    transparent 5px 6px,
+    var(--tag-ink) 6px 7px,
+    transparent 7px 10px
+  );
+}
+
+/* —— StatusStrip —— size: tertiary · domain: carrier / flight / date / env */
+.tag-status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--tag-space-2) var(--tag-space-4);
+  font-family: var(--tag-font-mono);
+  font-size: var(--tag-size-context);
+  letter-spacing: var(--tag-track-context);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.tag-status li::after {
+  content: "";
+}
+
+.tag-status .tag-status-key {
+  display: block;
+  font-family: var(--tag-font-body);
+  font-size: var(--tag-size-meta);
+  font-weight: 700;
+  letter-spacing: var(--tag-track-meta);
+  text-transform: uppercase;
+  margin-bottom: 0.1rem;
+}
+
+/* —— Fallback name —— size: fallback · domain: human subject */
+.tag-fallback {
+  font-family: var(--tag-font-body);
+  font-size: var(--tag-size-fallback);
+  font-weight: var(--tag-weight-fallback);
+  letter-spacing: var(--tag-track-fallback);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* —— StubBackup —— size: stub · domain: claim / receipt / audit copy */
+.tag-stubs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
+  gap: var(--tag-space-2);
+  margin: 0;
+}
+
+.tag-stub {
+  border: var(--tag-rule-width) solid var(--tag-rule);
+  padding: var(--tag-space-2);
+  min-height: 5.5rem;
+}
+
+.tag-stub strong {
+  display: block;
+  font-size: var(--tag-size-meta);
+  letter-spacing: var(--tag-track-meta);
+  text-transform: uppercase;
+  margin-bottom: var(--tag-space-2);
+}
+
+.tag-stub .tag-id {
+  font-size: var(--tag-size-stub);
+  letter-spacing: 0.08em;
+}
+
+/* —— TagCard: closed package —— */
+.tag-card {
+  background: var(--tag-ground-strict);
+  border: 2px solid var(--tag-ink);
+  padding: var(--tag-pad);
+  display: grid;
+  gap: var(--tag-space-4);
+  position: relative;
+  max-width: 40rem;
+}
+
+.tag-card::before {
+  /* loop punch — attachment domain */
+  content: "";
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 2px solid var(--tag-ink);
+  border-radius: 50%;
+  position: absolute;
+  top: var(--tag-space-3);
+  left: var(--tag-space-3);
+  box-shadow: inset 0 0 0 4px var(--tag-ground-strict);
+}
+
+.tag-card-face {
+  padding-left: var(--tag-space-6);
+  display: grid;
+  gap: var(--tag-space-3);
+}
+
+.tag-card[data-domain]:not([data-domain="default"]),
+.tag-row[data-domain]:not([data-domain="default"]) {
+  border-left-style: solid;
+  border-left-width: 8px;
+  border-left-color: var(--tag-domain-mark, var(--tag-ink));
+}
+
+.tag-row[data-domain]:not([data-domain="default"]) {
+  padding-left: var(--tag-space-3);
+}
+
+/* —— Dashboard row: same package at list density —— */
+.tag-row {
+  display: grid;
+  grid-template-columns: minmax(4.5rem, 7rem) minmax(8rem, 1fr) minmax(7rem, 12rem) minmax(6rem, 10rem);
+  gap: var(--tag-space-3);
+  align-items: center;
+  padding: var(--tag-space-3) 0;
+  border-bottom: var(--tag-rule-hair) solid var(--tag-rule);
+  background: var(--tag-ground-strict);
+}
+
+.tag-row .tag-dest {
+  font-size: clamp(1.75rem, 4vw, 2.35rem);
+  letter-spacing: -0.04em;
+}
+
+.tag-row .tag-id {
+  font-size: 0.9375rem;
+  letter-spacing: 0.1em;
+}
+
+@media (max-width: 720px) {
+  .tag-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* —— Doc header —— */
+.tag-doc-header {
+  border-bottom: 2px solid var(--tag-ink);
+  padding-bottom: var(--tag-space-5);
+  margin-bottom: var(--tag-space-6);
+  display: grid;
+  gap: var(--tag-space-3);
+}
+
+/* —— Log line —— */
+.tag-log {
+  font-family: var(--tag-font-mono);
+  font-size: 0.8125rem;
+  background: var(--tag-ground-strict);
+  border: var(--tag-rule-hair) solid var(--tag-rule);
+  padding: var(--tag-space-3);
+  overflow-x: auto;
+  white-space: pre;
+  margin: 0;
+}
+
+/* —— Before / after —— */
+.tag-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--tag-space-4);
+}
+
+@media (max-width: 800px) {
+  .tag-pair { grid-template-columns: 1fr; }
+}
+
+.tag-noise {
+  background: #ece9e1;
+  border: var(--tag-rule-hair) dashed #888;
+  padding: var(--tag-pad);
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.tag-noise h2 {
+  font-size: 1.4rem;
+  margin: 0 0 0.4rem;
+  background: linear-gradient(90deg, #6b4, #49f);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.tag-caption {
+  font-size: var(--tag-size-meta);
+  letter-spacing: var(--tag-track-meta);
+  text-transform: uppercase;
+  margin: 0 0 var(--tag-space-2);
+  font-weight: 700;
+}
+
+.tag-section {
+  margin: var(--tag-space-8) 0;
+}
+
+.tag-section h2 {
+  font-family: var(--tag-font-body);
+  font-size: 1rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  margin: 0 0 var(--tag-space-4);
+  padding-bottom: var(--tag-space-2);
+  border-bottom: var(--tag-rule-hair) solid var(--tag-rule);
+}
+
+.tag-grid {
+  display: grid;
+  gap: var(--tag-space-6);
+}
+
+.tag-diagram {
+  width: 100%;
+  height: auto;
+  border: var(--tag-rule-hair) solid var(--tag-rule);
+  background: var(--tag-ground-strict);
+}
+
+.tag-footer {
+  margin-top: var(--tag-space-8);
+  padding-top: var(--tag-space-4);
+  border-top: var(--tag-rule-hair) solid var(--tag-rule);
+  font-size: var(--tag-size-context);
+}
+
+.tag-footer a { color: var(--tag-ink); }
