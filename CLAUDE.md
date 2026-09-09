@@ -3,6 +3,10 @@
 
 > Loaded automatically when you `cd` into this repository, or when this file is symlinked into a project's root or `.claude/`.
 
+> **Read [`BUILDER.md`](BUILDER.md) first.** That file is the method — how the work gets
+> made. This file is the law — what a correct surface looks like. Obeying the law without
+> the method produces compliant work that is still the wrong thing.
+
 ## Read in this order
 
 1. **[`AGENTS.md`](AGENTS.md)** — the spine. Most work is correct after this one file.

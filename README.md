@@ -15,6 +15,12 @@ Stranger door: [`START-HERE.md`](START-HERE.md) · Live preview: [`examples/gall
 
 By [Dr Non Arkaraprasertkul](https://github.com/Nonarkara) (Dr Non / Nonarkara). Independent studio work. **Not an IATA or airline product.**
 
+> **Before the rules — [`BUILDER.md`](BUILDER.md): how this repository expects you to work.**
+> Build something rough enough to tear apart. Imagine a human doing the job before you
+> prompt an agent to do it. Give the agent the real source material, not a description of
+> it. Test, because a hypothesis proves nothing. Have a second, different agent look for
+> the flaw. The law in this repository is the floor, not the work.
+
 ---
 
 ## Philosophy

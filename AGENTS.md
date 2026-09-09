@@ -5,6 +5,10 @@
 >
 > Human door: [`START-HERE.md`](START-HERE.md). Full skill: [`skill/white-baggage-tag-aesthetic/SKILL.md`](skill/white-baggage-tag-aesthetic/SKILL.md).
 
+> **Read [`BUILDER.md`](BUILDER.md) first.** That file is the method — how the work gets
+> made. This file is the law — what a correct surface looks like. Obeying the law without
+> the method produces compliant work that is still the wrong thing.
+
 ## The object
 
 A white airline baggage tag is a **closed information package under time pressure**. Every property it has was forced by a failure mode, and the survivors are the design. Why that matters: [`docs/lineage.md`](docs/lineage.md).

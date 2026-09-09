@@ -3,9 +3,11 @@
 
 You cloned **Dr Non’s Luggage Tag Aesthetic Design System**. This file is the door. The [README](README.md) is the wall you show the street.
 
+How the work gets made — before any of the law below — is [`BUILDER.md`](BUILDER.md).
+
 ## What this is
 
-A forkable method: treat the **white thermal airline baggage tag** as the law of a closed information package. Every element must carry explicit, non-redundant meaning. Size and domain are information. Human scan under time pressure comes first.
+A forkable method: treat the **white thermal airline baggage tag** as the law of a closed information package. Every element must carry explicit meaning — repeated only where the medium is lossy and the read is safety-critical, as a real tag repeats the licence plate down a strip that tears. Size and domain are information. Human scan under time pressure comes first.
 
 It is **not** an IATA manual, not an airline product, not a passenger database, not a ranking.
 
