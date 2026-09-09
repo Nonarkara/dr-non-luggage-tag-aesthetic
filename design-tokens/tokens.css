@@ -99,7 +99,7 @@
   --tag-gap-zone: 0.375rem;  /* between anatomical zones */
   --tag-pad-zone: 0.375rem;
 
-  --tag-rule-width: 1.5px;
+  --tag-rule-width: 2px;    /* the object's edge — MoMA Law VIII emphasis */
   --tag-rule-hair: 1px;
   --tag-pad: var(--tag-space-5);
   --tag-max: 72rem;

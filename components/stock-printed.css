@@ -119,7 +119,7 @@
 }
 
 .pt-context dt { font-size: var(--printed-size-micro); letter-spacing: var(--printed-track-micro); opacity: 0.75; margin: 0; }
-.pt-context dd { margin: 0 0 0.35rem; font-variant-numeric: var(--tag-tabular); }
+.pt-context dd { margin: 0 0 var(--tag-gap-zone); font-variant-numeric: var(--tag-tabular); }
 
 /* ── Rank 4 — the human fallback ──────────────────────────────────────── */
 .pt-fallback {

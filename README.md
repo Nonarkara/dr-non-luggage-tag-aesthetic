@@ -11,6 +11,8 @@
 
 History: [`docs/history.md`](docs/history.md) · Why it works: [`docs/why-it-is-beautiful.md`](docs/why-it-is-beautiful.md)
 
+Layout law: [`docs/moma.md`](docs/moma.md) — the frame obeys the [MoMA rules](https://github.com/Nonarkara/moma-rules); the face and the ephemera skin are outside them on purpose.
+
 Stranger door: [`START-HERE.md`](START-HERE.md) · Live preview: [`examples/gallery/index.html`](examples/gallery/index.html) (open locally, no build) · Agent skill: [`skill/white-baggage-tag-aesthetic/SKILL.md`](skill/white-baggage-tag-aesthetic/SKILL.md)
 
 By [Dr Non Arkaraprasertkul](https://github.com/Nonarkara) (Dr Non / Nonarkara). Independent studio work. **Not an IATA or airline product.**

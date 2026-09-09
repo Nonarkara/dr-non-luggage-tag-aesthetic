@@ -13,8 +13,9 @@
 2. **[`docs/registers.md`](docs/registers.md)** — before any CSS. The tag aesthetic is not universal; the wrong register is the main failure mode.
 3. **[`docs/ephemera.md`](docs/ephemera.md)** — the 65/35 mix, and the rule that keeps the skin out of kitsch.
 4. **[`skill/white-baggage-tag-aesthetic/SKILL.md`](skill/white-baggage-tag-aesthetic/SKILL.md)** — the full invocable skill.
-5. **[`docs/lineage.md`](docs/lineage.md)** — why this object is worth copying, and where it goes further than Rams or Vignelli.
-6. **[`components/index.html`](components/index.html)** — the live gallery. Reference it; do not invent variants.
+5. **[`docs/moma.md`](docs/moma.md)** — the envelope. What obeys the MoMA layout laws, and what is outside them on purpose.
+6. **[`docs/lineage.md`](docs/lineage.md)** — why this object is worth copying, and where it goes further than Rams or Vignelli.
+7. **[`components/index.html`](components/index.html)** — the live gallery. Reference it; do not invent variants.
 
 ## How to apply
 
@@ -31,6 +32,7 @@
 - **Never round a corner** other than a true circle carrying meaning.
 - **Never use** a gradient between hues, a non-inset shadow, blur, or glassmorphism.
 - **Never invent a fifth rank.**
+- **Never put a border between 2px and 4px.** A line is 1 or 2; a band is 4 or more. In between is a second design language — [`docs/moma.md`](docs/moma.md).
 - **Never ship without** `node tools/tag-audit.mjs . --strict` exiting 0.
 
 ## The thing most often got wrong

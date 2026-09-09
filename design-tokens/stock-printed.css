@@ -65,7 +65,7 @@
   --printed-band:        1.25rem;   /* carrier livery band height      */
   --printed-band-stripe: 0.375rem;  /* one stripe inside a band        */
   --printed-rule:        2px;       /* printed rules are heavier than thermal hairlines */
-  --printed-rule-heavy:  5px;
+  --printed-rule-heavy:  4px;       /* a band, not a thicker line          */
   --printed-punch:       2.25rem;   /* the hole */
   --printed-punch-ring:  0.3125rem;
   --printed-pad:         1.5rem;

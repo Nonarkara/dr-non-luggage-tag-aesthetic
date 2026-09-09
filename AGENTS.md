@@ -96,6 +96,10 @@ A block that deliberately fails the gate — a Before panel in a demo — declar
 
 A printed tag gets alignment for free; a digital one does not. One edge landing eleven pixels short of its neighbour reads as *accident*, the one thing the object never reads as. Line weight carries role — uniform 1px everywhere says nobody decided which line mattered. See [`docs/grid.md`](docs/grid.md).
 
+The page around the tag obeys the [MoMA layout laws](https://github.com/Nonarkara/moma-rules) in full: one origin, a closed spacing scale of `0 4 8 12 16 20 24 32 40 48 64 80 96 120 160`, no orphan grid cells, and **no border between 2px and 4px** — 1 and 2 are lines, 4 and up are colour bands, and in between is a second design language.
+
+The face and the ephemera skin sit **outside** those laws on purpose. A 50.8mm face has its own closed sub-scale; a stamp rotated six degrees is not on any grid and should not be. The exemption is granted by token name, not by claim — [`docs/moma.md`](docs/moma.md) says exactly where the boundary falls and why.
+
 ## 8. Run the gate before you ship
 
 ```bash

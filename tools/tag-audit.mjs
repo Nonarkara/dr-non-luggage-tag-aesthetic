@@ -351,6 +351,73 @@ function checkDomainColour(text, rel) {
   return found;
 }
 
+/**
+ * MoMA Law II (the closed spacing scale) and Law VIII (one hairline), applied
+ * to the structural layer only.
+ *
+ * The split the whole system rests on: the frame is modular and checkable; the
+ * skin is not. A stamp rotated 6 degrees, a 2.5px stamp rule, a 1px press drift
+ * — those record an event that happened, and snapping them to a grid would be
+ * manufactured wear, which is the one thing wabi-sabi forbids. So the ephemera
+ * layer is exempt by name, and the exemption is narrow enough to be a decision
+ * rather than a loophole: it needs an `eph` marker on the line or the file.
+ *
+ * Reasoning: docs/moma.md.
+ */
+const MOMA_SCALE = new Set([0, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96, 120, 160]);
+const SPACING_PROP = /(?:^|[;{\s])(margin|padding|gap|row-gap|column-gap|inset)(?:-(?:top|right|bottom|left|block|inline)(?:-(?:start|end))?)?\s*:/i;
+const LINE_PROP = /(?:^|[;{\s])(?:border(?:-(?:top|right|bottom|left|block|inline))?(?:-width)?|outline(?:-width)?)\s*:/i;
+const SPACING_TOKEN = /--[\w-]*(?:space|pad|gap)[\w-]*\s*:/i;
+const LINE_TOKEN = /--[\w-]*(?:rule|hairline|border)[\w-]*(?:-width)?\s*:/i;
+const EPH_MARKER = /--eph-|\.eph-|\[data-eph|\[data-event|eph-/;
+
+/* The face is the depicted object, and it has its own physical scale — a 50.8mm
+ * printed face is not a 1280px page, and forcing the page's 4px base into it
+ * would flatten the density that does the sorting work. MoMA's own precedent is
+ * the same split: their laws govern the wall, not the painting hanging on it. */
+const FACE_MARKER = /--tag-gutter|--tag-gap-|--tag-pad-zone|--tag-face-|--printed-(?!rule)|\.pt-face/;
+
+/**
+ * A border is one of two things and never something in between.
+ *   0/1/2px  a LINE. 1 is the hairline; 2 is the object's own edge, Law VIII's
+ *            "deliberate emphasis" carve-out and the only second weight allowed.
+ *   >=4 on scale  a BAND — a colour block that happens to be declared as a
+ *            border, like the domain rail. It is ink, not chrome.
+ * 1.5, 2.5, 3, 5, 6 are neither: too thick to read as a rule, too thin to read
+ * as a field. That band is where "a second design language" lives.
+ */
+const isLineWeight = (px) => px <= 2 ? Number.isInteger(px) : MOMA_SCALE.has(px) && px >= 4;
+
+function checkMomaScale(text, rel) {
+  if (/ephemera/.test(rel)) return [];
+  const found = [];
+  text.split(/\r?\n/).forEach((raw, i) => {
+    const line = stripComments(raw);
+    if (!line.trim() || EPH_MARKER.test(line) || FACE_MARKER.test(line)) return;
+    if (/tag-audit-ignore|clamp\(|calc\(|cqi|vw|vh|%/.test(line)) return;
+
+    const isSpace = SPACING_PROP.test(line) || SPACING_TOKEN.test(line);
+    const isLine = LINE_PROP.test(line) || LINE_TOKEN.test(line);
+    if (!isSpace && !isLine) return;
+
+    const re = /(-?\d*\.?\d+)(px|rem)\b/g;
+    let m;
+    while ((m = re.exec(line)) !== null) {
+      const px = Math.abs(m[2] === 'rem' ? parseFloat(m[1]) * 16 : parseFloat(m[1]));
+      const ok = isLine && !isSpace ? isLineWeight(px) : MOMA_SCALE.has(px);
+      if (ok) continue;
+      found.push({
+        file: rel, line: i + 1, col: m.index + 1, match: m[0],
+        msg: isLine && !isSpace
+          ? `Border ${px}px is neither a line nor a band. MoMA Law VIII: 1px is the hairline, 2px is the object's own edge, and 4px or more on the scale is a colour band. In between is a second design language arguing with the first. docs/moma.md`
+          : `Spacing ${px}px is off the closed scale (0 4 8 12 16 20 24 32 40 48 64 80 96 120 160). MoMA Law II: two elements align when their values come from the same small set, and cannot when the set is open. The ephemera layer is exempt; the frame is not. docs/moma.md`,
+        severity: 'error',
+      });
+    }
+  });
+  return found;
+}
+
 async function scanFile(file, root) {
   const rel = relative(root, file).split(sep).join('/');
   const raw = await readFile(file, 'utf8');
@@ -376,7 +443,8 @@ async function scanFile(file, root) {
 
   out.push(...checkHierarchy(text, rel), ...checkDomainColour(text, rel),
            ...checkGradients(text, rel), ...checkInkLimit(text, rel), ...checkOchre(text, rel),
-           ...checkFieldContrast(text, rel), ...(ui ? checkEphemeraEvents(text, rel) : []));
+           ...checkFieldContrast(text, rel), ...checkMomaScale(text, rel),
+           ...(ui ? checkEphemeraEvents(text, rel) : []));
   return out;
 }
 

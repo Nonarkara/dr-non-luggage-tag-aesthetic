@@ -177,7 +177,7 @@ body.tag-body {
   font-weight: 700;
   letter-spacing: var(--tag-track-meta);
   text-transform: uppercase;
-  margin-bottom: 0.1rem;
+  margin-bottom: var(--tag-gap-tight);
 }
 
 /* —— Fallback name —— size: fallback · domain: human subject */

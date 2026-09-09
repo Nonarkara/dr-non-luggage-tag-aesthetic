@@ -13,11 +13,12 @@ Read in this order if you are designing, not browsing:
 8. [`anatomy.md`](anatomy.md) — the zones
 9. [`hierarchy.md`](hierarchy.md) — scan order and UI mapping
 10. [`grid.md`](grid.md) — every edge resolves to another edge
-11. [`critique-checklist.md`](critique-checklist.md) — the human gate
-12. [`how-to.md`](how-to.md) — apply it
-13. [`standards-740-753.md`](standards-740-753.md) — what is actually cited
-14. [`evolution.md`](evolution.md) — thermal to RFID to reusable
-15. [`sources.md`](sources.md) — sources; no invented statistics
+11. [`moma.md`](moma.md) — which layers obey the MoMA laws, and which are outside them on purpose
+12. [`critique-checklist.md`](critique-checklist.md) — the human gate
+13. [`how-to.md`](how-to.md) — apply it
+14. [`standards-740-753.md`](standards-740-753.md) — what is actually cited
+15. [`evolution.md`](evolution.md) — thermal to RFID to reusable
+16. [`sources.md`](sources.md) — sources; no invented statistics
 
 The machine half of the gate is [`../tools/tag-audit.mjs`](../tools/tag-audit.mjs). It decides what a
 computer can decide; the checklist keeps the questions that need a person.

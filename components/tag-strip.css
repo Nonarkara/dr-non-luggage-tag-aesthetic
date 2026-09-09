@@ -182,7 +182,7 @@
   display: flex;
   justify-content: space-between;
   gap: var(--tag-gap-zone);
-  padding: 0.15rem var(--tag-gutter);
+  padding: var(--tag-gap-tight) var(--tag-gutter);
   margin-inline: calc(-1 * var(--tag-gutter));
   border-top: var(--tag-rule-hair) solid var(--tag-ink);
 }
@@ -192,7 +192,7 @@
 /* ---- Barcode block ---- */
 .tag-barcode-block {
   display: grid;
-  gap: 0.15rem;
+  gap: var(--tag-gap-tight);
   justify-items: center;
   padding-block: var(--tag-gap-zone);
 }
