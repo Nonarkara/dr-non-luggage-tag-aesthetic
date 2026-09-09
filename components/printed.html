@@ -1,0 +1,148 @@
+<!-- SPDX-License-Identifier: MIT -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stock B — printed tag compositions</title>
+<link rel="stylesheet" href="tag-system.css">
+<link rel="stylesheet" href="stock-printed.css">
+<style>
+  body { padding: var(--tag-space-6) var(--tag-space-5); max-width: var(--tag-max); margin: 0 auto; }
+  .doc-note { max-width: 34rem; font-size: var(--tag-size-context); line-height: 1.5; }
+  .doc-label { font-size: var(--printed-size-micro); letter-spacing: var(--printed-track-micro);
+               text-transform: uppercase; margin: var(--tag-space-6) 0 var(--tag-space-2); }
+</style>
+</head>
+<body class="tag-body">
+
+<h1 class="tag-h1">Stock B — printed</h1>
+<p class="doc-note">Seven compositions. Every colour names a domain, every face holds three inks or fewer
+counting the stock, and no gradient blends — the splits are hard stops, the mark a two-pass press makes.
+Doctrine: <a href="../docs/stocks.md">docs/stocks.md</a>.</p>
+
+<div class="pt-wall">
+
+  <!-- ─── 1. Full carrier field. The move a thermal tag cannot make. ─── -->
+  <div>
+    <p class="doc-label">1 · Carrier field</p>
+    <!-- stock: printed · domain: transit (interline) -->
+    <div class="pt-face pt-face--field" data-stock="printed" data-domain="transit">
+      <div class="pt-punch"></div>
+      <!-- size: primary · domain: IATA destination -->
+      <p class="pt-dest">LON</p>
+      <!-- size: tertiary · domain: city, spelled for the non-expert reader -->
+      <p class="pt-city">London</p>
+      <!-- size: secondary · domain: struck serial, second press pass -->
+      <p class="pt-serial">09-11-70</p>
+      <dl class="pt-context">
+        <div><dt>Flight</dt><dd>127</dd></div>
+        <div><dt>Weight</dt><dd>23 kg</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <!-- ─── 2. Two-tone split. Two domains, one object, one press. ─────── -->
+  <div>
+    <p class="doc-label">2 · Two-tone split</p>
+    <!-- stock: printed · domain: atlantic (long-haul trunk) -->
+    <div class="pt-face pt-face--split" data-stock="printed" data-domain="atlantic" style="--pt-split: 52%">
+      <div class="pt-punch" style="color: var(--stock-cream)"></div>
+      <p class="pt-dest" style="color: var(--stock-cream)">ROM</p>
+      <p class="pt-city" style="color: var(--stock-cream)">Roma · Fiumicino</p>
+      <p class="pt-serial pt-serial--flat">8537</p>
+      <dl class="pt-context">
+        <div><dt>Transfer</dt><dd><span class="pt-arrow"></span> B 57</dd></div>
+        <div><dt>Date</dt><dd>08 SEP</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <!-- ─── 3. Livery band. A carrier encoded as a repeating stripe. ───── -->
+  <div>
+    <p class="doc-label">3 · Livery band</p>
+    <!-- stock: printed · domain: signal (flag carrier) -->
+    <div class="pt-face" data-stock="printed" data-domain="signal" style="padding: 0">
+      <div class="pt-band"></div>
+      <div style="padding: var(--printed-pad)">
+        <p class="pt-dest" style="color: var(--ink-signal)">SYD</p>
+        <p class="pt-city">Sydney · Kingsford Smith</p>
+        <p class="pt-serial">571-903</p>
+        <p class="pt-fallback">Arkara / Non</p>
+      </div>
+      <div class="pt-band"></div>
+    </div>
+  </div>
+
+  <!-- ─── 4. Second reading axis. The 90° barcode logic, in type. ────── -->
+  <div>
+    <p class="doc-label">4 · Second axis</p>
+    <!-- stock: printed · domain: tropic (regional) -->
+    <div class="pt-face pt-face--field" data-stock="printed" data-domain="tropic"
+         style="display: grid; grid-template-columns: auto 1fr; gap: var(--printed-pad)">
+      <!-- size: tertiary · domain: route, readable from the side of the cart -->
+      <p class="pt-vertical">Bangkok — Chiang Mai</p>
+      <div>
+        <p class="pt-dest">CNX</p>
+        <p class="pt-city">Chiang Mai</p>
+        <p class="pt-serial pt-serial--flat">0217123456</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ─── 5. Kraft stock, one ink. Restraint is a stock choice too. ──── -->
+  <div>
+    <p class="doc-label">5 · Kraft, single ink</p>
+    <!-- stock: printed · face: kraft · no domain field declared -->
+    <div class="pt-face" data-stock="printed" data-face="kraft">
+      <div class="pt-punch"></div>
+      <p class="pt-dest">HKT</p>
+      <p class="pt-city">Phuket</p>
+      <hr class="pt-perf">
+      <p class="pt-fallback">Claim stub · ใบรับ</p>
+      <dl class="pt-context">
+        <div><dt>Issued</dt><dd>08 SEP 26</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <!-- ─── 6. Ochre field, dark ink only. ────────────────────────────── -->
+  <div>
+    <p class="doc-label">6 · Hold / cargo</p>
+    <!-- stock: printed · domain: ochre (cargo, hold) — dark type only -->
+    <div class="pt-face pt-face--field" data-stock="printed" data-domain="ochre">
+      <p class="pt-dest">HOLD</p>
+      <p class="pt-city">Not wanted in cabin</p>
+      <p class="pt-serial pt-serial--flat">38-15-46</p>
+      <dl class="pt-context">
+        <div><dt>Station</dt><dd>BKK</dd></div>
+        <div><dt>Point</dt><dd>LOAD</dd></div>
+      </dl>
+    </div>
+  </div>
+
+  <!-- ─── 7. Extreme scale. Same four ranks, wider ratio. ───────────── -->
+  <div>
+    <p class="doc-label">7 · Extreme scale</p>
+    <!-- stock: printed · domain: rose (charter / seasonal) -->
+    <div class="pt-face" data-stock="printed" data-domain="rose">
+      <p class="pt-dest" style="color: var(--ink-rose)">B</p>
+      <p class="pt-city">Sorting symbol</p>
+      <p class="pt-serial">609295</p>
+      <dl class="pt-context">
+        <div><dt>Final destination</dt><dd>LON</dd></div>
+        <div><dt>Pier</dt><dd>P-3</dd></div>
+      </dl>
+      <p class="pt-fallback">Arkara / Non</p>
+    </div>
+  </div>
+
+</div>
+
+<p class="doc-note" style="margin-top: var(--tag-space-7)">
+Example LPN <code>0217123456</code> is synthetic. Not a live bag.
+Gallery for Stock A: <a href="index.html">index.html</a>.
+</p>
+
+</body>
+</html>

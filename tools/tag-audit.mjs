@@ -31,10 +31,10 @@ const RULES = {
       msg: 'Rounded corner (JS style). --tag-radius is 0.' },
     { re: /box-shadow\s*:(?![^;]*inset)[^;]*[1-9]/g,
       msg: 'Drop shadow. Printed ink casts none. Use a rule, not elevation.' },
-    { re: /(?<!repeating-)(linear|radial|conic)-gradient\s*\(/g,
-      msg: 'Gradient. Thermal print is one ink on one ground.' },
+    { re: /(radial|conic)-gradient\s*\(/g,
+      msg: 'Radial or conic gradient. No press makes this mark.' },
     { re: /repeating-(linear|radial)-gradient\s*\(/g,
-      msg: 'Repeating gradient. Legitimate only when it renders a machine symbol (barcode bars). Decorative stripes fail PO.',
+      msg: 'Repeating gradient. Legitimate only for a machine symbol (barcode bars) or a carrier livery band. Decorative stripes fail PO.',
       severity: 'warn' },
     { re: /backdrop-filter\s*:|filter\s*:[^;]*blur\s*\(/g,
       msg: 'Blur / glassmorphism. Checklist (f): do not invert the tag into a dark glass card.' },
@@ -122,6 +122,147 @@ function maskNoise(text, isUi) {
   return out;
 }
 
+/**
+ * A press lays down solid ink. It cannot blend.
+ *
+ * So a two-stop gradient whose stops MEET at the same position is not a
+ * gradient at all — it is a hard split, the mark a two-pass press makes, and
+ * it is how Stock B encodes two domains on one face. A gradient whose stops
+ * do NOT meet renders a colour transition, which no press can do.
+ *
+ * The distinction is structural, so it is checked structurally rather than
+ * banned by keyword.
+ */
+function checkGradients(text, rel) {
+  const found = [];
+  const re = /(?<!repeating-)linear-gradient\s*\(([^;]*?)\)\s*(?:;|$)/g;
+  let m;
+  while ((m = re.exec(text)) !== null) {
+    // Split on top-level commas only — `var(--x, 46%)` carries its own comma.
+    const parts = [];
+    let depth = 0, buf = '';
+    for (const ch of m[1]) {
+      if (ch === '(') depth++;
+      else if (ch === ')') depth--;
+      if (ch === ',' && depth === 0) { parts.push(buf); buf = ''; continue; }
+      buf += ch;
+    }
+    parts.push(buf);
+    // Drop a leading direction argument (`to bottom`, `90deg`).
+    const stops = parts
+      .map((x) => x.trim().replace(/\s+/g, ' '))
+      .filter(Boolean)
+      .filter((x, i) => !(i === 0 && /^(to\s|[\d.-]+deg|[\d.-]+turn)/.test(x)));
+    // A press split: every stop carries BOTH a start and an end position, so
+    // adjacent stops butt against each other and no transition is rendered.
+    const twoPos = /\s(?:[\d.-]+%?|var\([^)]*\))\s+(?:[\d.-]+%?|var\([^)]*\))$/;
+    const meets = stops.length >= 2 && stops.every((x) => twoPos.test(x));
+    if (!meets) {
+      found.push({
+        file: rel, line: text.slice(0, m.index).split('\n').length, col: 1,
+        match: 'linear-gradient(…)',
+        msg: 'Blended gradient. A press lays flat ink — a two-domain split must use hard stops that meet at one position (`A 0 46%, B 46% 100%`).',
+        severity: 'error',
+      });
+    }
+  }
+  return found;
+}
+
+/**
+ * Stock B: three inks maximum, and the stock colour is one of them.
+ *
+ * That constraint is what produced every quality worth copying from a printed
+ * tag. Counted per face, because the face is the object a press ran.
+ */
+function checkInkLimit(text, rel) {
+  const found = [];
+  const face = /<[^>]*class="[^"]*\bpt-face\b[^"]*"[^>]*>/g;
+  let m;
+  while ((m = face.exec(text)) !== null) {
+    // Take the subtree by div balance from this opening tag.
+    let depth = 1, i = face.lastIndex;
+    const step = /<div\b|<\/div>/g; step.lastIndex = i;
+    let t;
+    while (depth > 0 && (t = step.exec(text)) !== null) {
+      depth += t[0].startsWith('</') ? -1 : 1;
+      i = step.lastIndex;
+    }
+    const sub = text.slice(m.index, i);
+    const inks = new Set();
+    for (const k of sub.matchAll(/var\(--ink-([a-z]+)\)/g)) inks.add(k[1]);
+    for (const k of sub.matchAll(/data-domain="([a-z]+)"/g)) inks.add(k[1]);
+    for (const k of sub.matchAll(/#[0-9a-f]{6}\b/gi)) inks.add(k[0].toLowerCase());
+    if (inks.size > 3) {
+      found.push({
+        file: rel, line: text.slice(0, m.index).split('\n').length, col: 1,
+        match: [...inks].join(' '),
+        msg: `Ink limit: ${inks.size} inks on one face. Stock B allows three, and the stock colour is one of them (docs/stocks.md).`,
+        severity: 'error',
+      });
+    }
+  }
+  return found;
+}
+
+/** White type on a yellow field fails contrast, and the NYCTA system bans it outright. */
+function checkOchre(text, rel) {
+  const found = [];
+  for (const m of text.matchAll(/data-domain="ochre"[^>]*>/g)) {
+    const after = text.slice(m.index, m.index + 500);
+    if (/--on-field:\s*var\(--stock-|color:\s*(#f|white|var\(--stock-cream)/i.test(after)) {
+      found.push({ file: rel, line: text.slice(0, m.index).split('\n').length, col: 1,
+        match: 'ochre + light type',
+        msg: 'Light type on the ochre field. Dark ink only on yellow — the same rule the NYCTA trunk palette enforces.',
+        severity: 'error' });
+    }
+  }
+  return found;
+}
+
+/**
+ * Validate the Stock B palette itself.
+ *
+ * Every `[data-domain]` rule declares a `--field` and the `--on-field` ink that
+ * must survive it. Those are known hex values, so the pairing can be checked
+ * rather than trusted — a palette that ships an unreadable pair has failed at
+ * the only thing a tag does.
+ */
+function checkFieldContrast(text, rel) {
+  const found = [];
+  const vars = {};
+  for (const m of text.matchAll(/--((?:ink|stock)-[a-z]+):\s*(#[0-9a-fA-F]{6})/g)) vars[m[1]] = m[2];
+  if (!Object.keys(vars).length) return found;
+
+  const lum = (hex) => {
+    const c = [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255)
+      .map((v) => (v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4));
+    return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+  };
+  const ratio = (a, b) => {
+    const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p);
+    return (x + 0.05) / (y + 0.05);
+  };
+
+  const rule = /\[data-domain="([a-z]+)"\][^{]*\{([^}]*)\}/g;
+  let m;
+  while ((m = rule.exec(text)) !== null) {
+    const f = (m[2].match(/--field:\s*var\(--((?:ink|stock)-[a-z]+)\)/) || [])[1];
+    const o = (m[2].match(/--on-field:\s*var\(--((?:ink|stock)-[a-z]+)\)/) || [])[1];
+    if (!f || !o || !vars[f] || !vars[o]) continue;
+    const r = ratio(vars[f], vars[o]);
+    if (r < 3) {
+      found.push({
+        file: rel, line: text.slice(0, m.index).split('\n').length, col: 1,
+        match: `${m[1]}: ${vars[o]} on ${vars[f]} = ${r.toFixed(2)}:1`,
+        msg: 'Field/ink pair below 3:1. Large display type needs 3:1 minimum — a tag that cannot be read has failed at the only thing it does.',
+        severity: 'error',
+      });
+    }
+  }
+  return found;
+}
+
 async function collect(root) {
   const out = [];
   async function walk(dir) {
@@ -206,7 +347,9 @@ async function scanFile(file, root) {
     }
   });
 
-  out.push(...checkHierarchy(text, rel), ...checkDomainColour(text, rel));
+  out.push(...checkHierarchy(text, rel), ...checkDomainColour(text, rel),
+           ...checkGradients(text, rel), ...checkInkLimit(text, rel), ...checkOchre(text, rel),
+           ...checkFieldContrast(text, rel));
   return out;
 }
 

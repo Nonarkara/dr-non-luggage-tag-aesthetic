@@ -18,6 +18,26 @@ You are applying **Dr Non’s Luggage Tag Aesthetic**: a closed package in which
 Repo: https://github.com/Nonarkara/dr-non-luggage-tag-aesthetic  
 Load tokens from `design-tokens/tokens.css`. Mirror components in `components/`. Run the checklist in `docs/critique-checklist.md`.
 
+## Pick the stock first
+
+**Stock A — thermal** (default). White face, ground and ink, machine-first: a barcode does the sorting and the human type is the fallback. Everything else in this skill assumes Stock A.
+
+**Stock B — printed**. Two or three spot inks on coloured stock. **There is no barcode**, so colour, scale, and composition carry the sorting job a scanner does on Stock A. A full-face carrier colour, a destination at 10× the serial, a striped livery band, a struck serial slightly off-register, type running vertically up the side — all of it is load-bearing, none of it is decoration.
+
+Declare it: `data-stock="printed"` plus a `data-domain`. Tokens in `design-tokens/stock-printed.css`, surfaces in `components/stock-printed.css`, gallery at `components/printed.html`.
+
+Stock B has **harder** limits, not fewer — the constraint is what produces the look:
+
+1. Three inks maximum, and the stock colour is one of them.
+2. Flat colour only. A press cannot blend. A two-domain split uses hard stops that meet at one position (`A 0 46%, B 46% 100%`) — that is a press mark, not a gradient.
+3. Every ink names a domain: carrier, route family, class, station, priority.
+4. The overprint is the only texture. Small misregistration is evidence of process; large is a costume.
+5. Rotation is a second reading axis — the job the 90°-offset barcode does. Rotation that only decorates fails.
+6. Still four ranks. The ratio widens; no fifth voice appears.
+7. Contrast holds on the actual stock: ≥4.5:1 body, ≥3:1 large. Dark ink only on yellow.
+
+Use Stock B for identity, wayfinding, packaging, covers, posters, editorial openers, physical collateral. Use Stock A for dashboards, log lines, admin tables, anything with a machine in the loop. Full doctrine: `docs/stocks.md`.
+
 ## PO Completeness (gate — run first)
 
 For every element (type, colour, rule, icon, sentence, image):
@@ -126,6 +146,17 @@ Standards notes: `docs/standards-740-753.md`. Do not invent mishandling percenta
 | Packaging | SKU dest | Barcode + GTIN | Batch, date | Contents name | Tear-off receipt |
 
 Before/after: `examples/`. Live preview: `examples/gallery/index.html`.
+
+## Run the gate
+
+```bash
+node tools/tag-audit.mjs .           # or npx tag-audit .
+node tools/tag-audit.mjs . --strict  # CI
+```
+
+It decides what a machine can: radius, shadow, blended gradients, banned typefaces, inverted hierarchy (an id larger than its destination), colour with no domain, ink count per printed face, field/ink contrast below 3:1, emoji, slogans. A block that deliberately fails — a Before panel — declares `data-po="fail"` or uses `.tag-noise`.
+
+Meaning and non-redundancy stay human questions.
 
 ## Critique checklist (all must pass)
 

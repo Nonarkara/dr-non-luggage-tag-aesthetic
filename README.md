@@ -77,7 +77,9 @@ node tools/tag-audit.mjs . --strict  # CI: exit 1 on errors
 
 …then [`docs/critique-checklist.md`](docs/critique-checklist.md) for the questions a machine cannot answer.
 
-**Pick a register before any CSS** — this aesthetic is not universal, and the wrong register is how it fails: [`docs/registers.md`](docs/registers.md).
+**Pick a stock, then a register, before any CSS.** Stock A is the white thermal tag — ground and ink, machine-first. Stock B is the printed tag — colour fields, extreme scale, composition as information, because there is no barcode to do the sorting: [`docs/stocks.md`](docs/stocks.md).
+
+**And pick a register** — this aesthetic is not universal, and the wrong register is how it fails: [`docs/registers.md`](docs/registers.md).
 
 Agents: read [`AGENTS.md`](AGENTS.md), then load the skill. Do not invent a palette.
 
@@ -104,7 +106,8 @@ Portrait reference: [`assets/tag-portrait.svg`](assets/tag-portrait.svg) · Mark
 | Path | Job |
 |---|---|
 | [`design-tokens/`](design-tokens/) | CSS variables + JSON. Ground, ink, four ranks, spacing, mono, optional domain colours |
-| [`components/`](components/) | TagCard, DestinationHero, IdBlock, StatusStrip, StubBackup, DashboardRow |
+| [`design-tokens/stock-printed.css`](design-tokens/stock-printed.css) | **Stock B** — spot inks, press scale, livery bands, overprint |
+| [`components/`](components/) | TagCard, DestinationHero, IdBlock, StatusStrip, StubBackup, DashboardRow — plus [`printed.html`](components/printed.html), the Stock B gallery |
 | [`examples/`](examples/) | (a) website status card (b) API / log line (c) doc header — before/after noise removal |
 | [`skill/white-baggage-tag-aesthetic/`](skill/white-baggage-tag-aesthetic/) | Agent-invocable skill v2.0 |
 | [`docs/`](docs/) | Philosophy, lineage, registers, anatomy, hierarchy, grid, checklist, 740/753 notes, evolution, sources |
