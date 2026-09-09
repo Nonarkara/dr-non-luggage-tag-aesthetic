@@ -13,9 +13,10 @@ It is **not** an IATA manual, not an airline product, not a passenger database, 
 
 1. Look at the hero: [`assets/hero-tag.svg`](assets/hero-tag.svg) — destination dominant, LPN/barcode second, stubs as backup.
 2. Open [`examples/gallery/index.html`](examples/gallery/index.html) in a browser. No build.
-3. Read the gate: [`docs/critique-checklist.md`](docs/critique-checklist.md).
-4. Copy [`design-tokens/tokens.css`](design-tokens/tokens.css) + [`components/tag-system.css`](components/tag-system.css) into your surface.
-5. Rebuild one object (a card, a row, a header, a log line) until it is a tag.
+3. Pick a register — this aesthetic is not universal: [`docs/registers.md`](docs/registers.md).
+4. Read the gate: [`docs/critique-checklist.md`](docs/critique-checklist.md), and run its machine half: `node tools/tag-audit.mjs .`
+5. Copy [`design-tokens/tokens.css`](design-tokens/tokens.css) + [`components/tag-system.css`](components/tag-system.css) into your surface.
+6. Rebuild one object (a card, a row, a header, a log line) until it is a tag.
 
 ## Agent path
 
@@ -29,6 +30,10 @@ It is **not** an IATA manual, not an airline product, not a passenger database, 
 | Path | Job |
 |---|---|
 | [`docs/philosophy.md`](docs/philosophy.md) | Why the tag is the law |
+| [`docs/lineage.md`](docs/lineage.md) | Why this is good design — Rams, Vignelli, and what the tag adds |
+| [`docs/registers.md`](docs/registers.md) | **When this aesthetic is wrong.** Read before any CSS |
+| [`docs/grid.md`](docs/grid.md) | Every edge resolves to another edge |
+| [`tools/tag-audit.mjs`](tools/tag-audit.mjs) | The gate, runnable. `--strict` in CI |
 | [`docs/anatomy.md`](docs/anatomy.md) | Eight zones |
 | [`docs/hierarchy.md`](docs/hierarchy.md) | Scan order + UI mapping |
 | [`docs/standards-740-753.md`](docs/standards-740-753.md) | What we actually cite |

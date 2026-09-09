@@ -1,0 +1,25 @@
+{
+  "name": "@nonarkara/luggage-tag-aesthetic",
+  "version": "2.1.0",
+  "description": "The white airline baggage tag as a systemic design principle. Tokens, components, an agent skill, and a runnable PO Completeness gate.",
+  "license": "MIT",
+  "author": "Dr Non Arkaraprasertkul",
+  "repository": { "type": "git", "url": "git+https://github.com/Nonarkara/dr-non-luggage-tag-aesthetic.git" },
+  "homepage": "https://github.com/Nonarkara/dr-non-luggage-tag-aesthetic#readme",
+  "type": "module",
+  "bin": { "tag-audit": "./tools/tag-audit.mjs" },
+  "exports": {
+    "./tokens.css": "./design-tokens/tokens.css",
+    "./tokens.json": "./design-tokens/tokens.json",
+    "./tag-system.css": "./components/tag-system.css",
+    "./package.json": "./package.json"
+  },
+  "files": ["design-tokens", "components", "tools", "skill", "docs", "AGENTS.md", "START-HERE.md", "README.md", "LICENSE"],
+  "scripts": {
+    "audit": "node tools/tag-audit.mjs .",
+    "audit:strict": "node tools/tag-audit.mjs . --strict",
+    "test": "node tools/tag-audit.mjs . --strict"
+  },
+  "keywords": ["design-system", "design-tokens", "baggage-tag", "iata", "functional-minimalism", "anti-slop", "css", "accessibility", "agent-skill"],
+  "engines": { "node": ">=18" }
+}

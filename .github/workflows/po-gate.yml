@@ -1,0 +1,22 @@
+name: PO gate
+
+# The checklist only works if it runs without being remembered.
+# A gate a human must choose to run is a gate that stops running.
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: PO Completeness — machine half
+        run: node tools/tag-audit.mjs . --strict

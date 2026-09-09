@@ -31,6 +31,8 @@ Every element in the complete package — physical tag, digital UI, system outpu
 
 **Redundancy is the failure model, not waste.** A real tag prints the licence plate five or six times because the strip gets torn and any surviving fragment must still identify the bag. Repeat the identifier when the medium is lossy and the read matters.
 
+Why this object is worth treating as law — and where it goes further than Rams or Vignelli: [`docs/lineage.md`](docs/lineage.md).
+
 **Hierarchy (mandatory order):**
 
 1. Human stress-scan (destination first)
@@ -65,7 +67,19 @@ Copy into your surface:
 
 Rebuild **one** object until it is a tag. Run [`docs/critique-checklist.md`](docs/critique-checklist.md) — including the new **(e2) density and presence** gate, which is the one that catches a correct-but-pale result.
 
-Agents: load the skill first. Do not invent a palette.
+Then run both halves of the gate — the machine half and the human half:
+
+```bash
+node tools/tag-audit.mjs .           # radius, shadow, gradient, banned type,
+                                     # inverted hierarchy, colour with no domain
+node tools/tag-audit.mjs . --strict  # CI: exit 1 on errors
+```
+
+…then [`docs/critique-checklist.md`](docs/critique-checklist.md) for the questions a machine cannot answer.
+
+**Pick a register before any CSS** — this aesthetic is not universal, and the wrong register is how it fails: [`docs/registers.md`](docs/registers.md).
+
+Agents: read [`AGENTS.md`](AGENTS.md), then load the skill. Do not invent a palette.
 
 ---
 
@@ -93,7 +107,9 @@ Portrait reference: [`assets/tag-portrait.svg`](assets/tag-portrait.svg) · Mark
 | [`components/`](components/) | TagCard, DestinationHero, IdBlock, StatusStrip, StubBackup, DashboardRow |
 | [`examples/`](examples/) | (a) website status card (b) API / log line (c) doc header — before/after noise removal |
 | [`skill/white-baggage-tag-aesthetic/`](skill/white-baggage-tag-aesthetic/) | Agent-invocable skill v2.0 |
-| [`docs/`](docs/) | Anatomy, hierarchy, checklist, 740/753 notes, evolution, sources |
+| [`docs/`](docs/) | Philosophy, lineage, registers, anatomy, hierarchy, grid, checklist, 740/753 notes, evolution, sources |
+| [`tools/tag-audit.mjs`](tools/tag-audit.mjs) | The PO gate, made runnable. `--strict` for CI |
+| [`AGENTS.md`](AGENTS.md) · [`CLAUDE.md`](CLAUDE.md) | Agent spine; Claude Code auto-load |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) · [`SECURITY.md`](SECURITY.md) | Lightweight, honest |
 
 Example identifier used everywhere: LPN `0217123456` (lead 0, issuer 217, serial 123456). **Synthetic. Not a live bag.**
