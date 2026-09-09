@@ -24,7 +24,9 @@ Making everything 16 px says “there is no time pressure.” That is also a dom
 
 ## Domain is information
 
-Default package: **ground + ink**. Colour is not a rank.
+Colour is not a *type rank* — it never replaces size in the scan order. But it is a **domain channel with its own range**, and it outruns every glyph on the object: a rail resolves at a distance where the destination code has not yet resolved.
+
+Default package: **ground + ink**, because an unrouted object genuinely has no routing state to declare. The moment it does, the rail is full-bleed and saturated.
 
 Domain extensions (tokens `--tag-domain-priority`, `--tag-domain-crew`, `--tag-domain-hazard`) exist only when the package includes that domain:
 
