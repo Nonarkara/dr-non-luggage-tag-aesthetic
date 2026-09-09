@@ -14,7 +14,7 @@ The white baggage tag is a **closed information package**. Every zone below is a
 | 3 | Destination IATA code | Human destination | **Primary** | Handler cannot sort under time pressure |
 | 4 | Carrier / flight / date | Context | Tertiary | Cannot sort without a lookup |
 | 5 | Passenger name | Human fallback | Fallback | No backup when LPN and systems fail |
-| 6 | 10-digit LPN + Code 128 | Machine key | **Secondary** | No key into BHS / DCS / messages |
+| 6 | 10-digit LPN + Interleaved 2 of 5 | Machine key | **Secondary** | No key into BHS / DCS / messages |
 | 7 | Stubs / claim | Detachable backup | Stub | No receipt; previous stubs confuse the next scan |
 | 8 | Face stock + adhesive | Durability / lifecycle | Material | Unreadable or detached object |
 
@@ -30,7 +30,7 @@ Ten digits, as used in Resolution 740 / 751 and baggage messaging:
 
 Example used throughout this repo: `0217123456` (lead 0, issuer 217, serial 123456). **Example only. Not a live bag.**
 
-The linear barcode is **Code 128** encoding that LPN. The 1D symbol is an identifier, not a routing document: flight and city live in human type and in messages (RP 1745 / BSM), not inside the bars.
+The linear barcode is **Interleaved 2 of 5** encoding that LPN (IATA's EBT guide §2.5 footnotes Res 740; Code 128 is a widespread secondary-source error). It interleaves digit pairs — first digit in the bars, second in the spaces — which is why the LPN has an even digit count. The 1D symbol is an identifier, not a routing document: flight and city live in human type and in messages (RP 1745 / BSM), not inside the bars.
 
 ## Dual encoding
 

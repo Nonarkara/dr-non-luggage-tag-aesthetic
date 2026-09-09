@@ -10,7 +10,7 @@ Resolution 740 specifies the **interline baggage tag** that must support optical
 Facts this system depends on (do not invent beyond these):
 
 - **License Plate Number (LPN)** — ten digits; also called the 10-digit bag tag / 10-digit barcode. It is the key into automated baggage systems, departure control, and baggage information messages (RP 1745 / RP 1755).
-- **Symbology** — linear **Code 128** encoding the LPN on the tag. The 1D symbol identifies the bag; it does not carry the itinerary.
+- **Symbology** — linear **Interleaved 2 of 5** encoding the LPN on the tag (IATA EBT Implementation Guide §2.5, footnoting R740). Numeric-only, interleaves digit pairs, requires an even digit count — which is part of why the LPN is ten digits. Code 128 is asserted by many secondary sources and is wrong for the interline bag tag. The 1D symbol identifies the bag; it does not carry the itinerary.
 - **Human type on the same object** — destination, flight data, and name remain printed so a handler or a broken system can still read the tag. IATA’s 753 implementation material states that Resolution 740 defines support for optical scanning, OCR, RFID (with RP 1740c), **and** manual recording.
 - **Face geometry** — tag maximum width **54.00 mm**; face material width **minimum 50.80 mm** (Resolution 740 attachments S1/T, as reproduced in industry printer documentation).
 - **Lead digit** (with Resolution 751 / 740 §5.1.2) — 0 interline; 1 fallback; 2 interline expedite/rush; 3–9 interline or online. Issuer is the 3-digit code (Resolution 769); serial is six digits.

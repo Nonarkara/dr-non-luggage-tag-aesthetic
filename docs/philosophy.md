@@ -9,15 +9,19 @@ Pilot Mark Vanhoenacker called the automated bag tag a masterpiece of design and
 
 Why the object earns that status, and how it differs from Rams and Vignelli: [`lineage.md`](lineage.md).
 
+Where the old doctrine was wrong, and the mechanisms behind it: [`why-it-is-beautiful.md`](why-it-is-beautiful.md). Where the object came from: [`history.md`](history.md).
+
 ---
 
-## The five laws
+## The six laws
 
 ### 1. PO Completeness
 
-Every element carries explicit, non-redundant meaning. **If it is present, it is required. If it is required, absence breaks the system.**
+Every element carries explicit meaning. **If it is present, it is required. If it is required, absence breaks the system.**
 
-The load-bearing word is *non-redundant*. Most interfaces pass "does this element mean something?" and fail "does something stronger already say it?" A city name printed beside `BKK` means something. It is still noise, because the three-letter code already carried that job at a higher rank, and the duplicate costs scan time at the exact moment scan time is scarce.
+**The redundancy carve-out.** An earlier version of this document said *non-redundant*, and that was wrong about the object it claims to describe. A real tag prints the licence plate five or six times down the strip, because the strip gets torn, soaked and abraded, and any surviving fragment must still identify the bag. Repetition there is the failure model, not waste — and it supplies the visual rhythm that makes the strip read as a composition.
+
+The rule is therefore: **redundancy is required when the medium is lossy and the read is safety-critical; elsewhere it is noise.** Duplicating a label because the layout felt bare still fails. A city name printed beside `BKK` on a screen — where nothing tears — is noise, because the code already carried that job at a higher rank.
 
 **Optional is not a category.** The instinct to mark something optional is the instinct to avoid deciding. Either the domain is in the package or the element is gone.
 
@@ -35,7 +39,7 @@ IATA three-letter codes, the 10-digit LPN, carrier, material durability, sustain
 
 Colour is never a rank. A rank is a position in the scan order; a domain is a fact about the record. A coloured rule on a row means *this record has that property*. A coloured rule "for energy" is a lie about the data, told in paint.
 
-The default package is ground and ink. Reaching for a second colour is nearly always the symptom of a hierarchy that was never resolved.
+**But where a domain is genuinely present, the colour is loud.** A full-bleed routing rail, not a tint and not a 1-px accent. Colour has the longest legibility range on the object — it resolves across a baggage hall while the destination code is still a smudge. An earlier version of this document treated colour as a risk to be avoided and shipped a system with no ink in it. The discipline is *which* domains earn colour, never *how quietly* they get it.
 
 ### 4. Hierarchy
 
@@ -48,6 +52,12 @@ The order is not a preference ranking — it is a dependency chain. Durability p
 The tag, the card, the row, the log line, the doc header, the shipping label — one object. No leftover chrome.
 
 "Closed" means the object answers its own questions without a second surface. A row that requires opening a detail pane to know what it is has not closed. A card with a status you must hover to read has not closed — hover is not available to a thumb, a screen reader, or a printout.
+
+### 6. Density
+
+The object is packed to its edge. A printed tag runs roughly a third of its area as solid ink and holds content to about 2 mm of a die-cut edge.
+
+**Restraint means *nothing unnecessary*, not *nothing there*.** If the result looks calm, it is a memo, not a tag. This is the law most often lost when the other five are read as an argument for austerity.
 
 ---
 

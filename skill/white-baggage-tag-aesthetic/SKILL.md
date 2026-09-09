@@ -7,7 +7,7 @@ description: >-
   docs, log line, packaging, or system output. Use when the user wants luggage-tag
   UI, PO Completeness, thermal black-on-white hierarchy, IATA-like destination
   dominance, or to strip decorative noise from an interface.
-version: "2.2"
+version: "3.0"
 license: MIT
 ---
 
@@ -53,6 +53,32 @@ Fail: slogans, filler, motivational copy, emoji, unused badges, “eco” leaves
 
 Pass: destination dominant, LPN mono + machine form, context strip, human fallback, stub/receipt, loop/border as attachment.
 
+## Density gate (run immediately after PO)
+
+PO tells you what may stay. Density tells you how it must be set.
+
+1. **Ink.** Does the package carry solid fill — a band, a filled box, a barcode block? Hairlines and type alone fail.
+2. **Reversal before size.** Anything that must outrank its neighbours gets knocked out of a solid band *before* it is scaled up. Reversal is free; size costs measure.
+3. **Tag scale inside, page scale outside.** Inside the object use `--tag-gutter` / `--tag-gap-zone` (~2 mm equivalent). `--tag-space-5`+ is for the document *around* it. Using page scale inside is what makes tags float.
+4. **Rail.** If a routing state exists in the record, it is a full-bleed colour band — never a tint, never a 1-px accent. One rail per package.
+5. **Real barcodes.** Use `components/barcode.js`. The interline licence plate symbology is **Interleaved 2 of 5** (IATA R740, via the EBT guide) — *not* Code 128, a common error. I2of5 interleaves digit pairs into bars and spaces, which is why it needs an even digit count and why the LPN is 10 digits. Code 128 is the fallback for alphanumeric payloads only. Never a CSS gradient — a decorative barcode concedes the marks are ornamental, which is the opposite of the claim.
+
+## Redundancy rule (supersedes "non-redundant" in v2)
+
+Repeat the identifier when the medium is **lossy** and the read is **safety-critical** — a torn strip, a truncated log line, a screenshotted receipt, a number read aloud over a phone. A real tag prints the licence plate five or six times for exactly this reason, and the repetition supplies the strip's rhythm.
+
+Duplicating something because the layout felt bare still fails.
+
+## Colour (supersedes "colour is not a rank")
+
+Colour is not a *type rank* and never replaces size in the scan order. It is a **domain channel with the longest range on the object** — a rail resolves across a hall when the destination code is still a smudge.
+
+Rails in `design-tokens/tokens.css`: `standard` (green), `priority` (red-orange), `business` (blue), `transfer` (amber), `hazard` (dark red), `heavy` (violet). Set with `data-rail="…"`.
+
+⚠️ **Say that this key is ours.** On real tags only one coloured rail is standardised — a **green edge for hold baggage checked in at an EU airport**, a customs marking, not a priority one. Priority/class colours are per-carrier; IATA recommends short connections be flagged by a remark or a *separate* sticker rather than a rail. Use the vocabulary, label it as a design invention, never as an aviation standard.
+
+Play lives in **combination, not decoration**: rail colour, reversal density, repeat count and rhythm, rotation axis, barcode module width, format. Not in illustration, gradients, glows, or rounded corners.
+
 ## Size and domain (declare in markup)
 
 Comment every block:
@@ -87,7 +113,7 @@ Never make the id larger than the destination. Never make everything 16 px.
 
 ## Dual encoding
 
-Human-readable **and** machine form: Code 128 (or JSON key / copy button), plus a stub. Physical tags print the barcode twice at 90° because conveyors are 3D (Vanhoenacker 2012). Digital analogue: a second column, an export, a permalink.
+Human-readable **and** machine form: Interleaved 2 of 5 for a numeric licence plate (or JSON key / copy button), plus a stub. Physical tags print the barcode twice at 90° because conveyors are 3D (Vanhoenacker 2012). Digital analogue: a second column, an export, a permalink.
 
 ## Material / lifecycle
 
@@ -97,9 +123,11 @@ Evolutionary rule: RFID (IATA RP1740c, EPC Gen2 / ISO 18000-6C) and EBT (RP1754)
 
 ## Anatomy (physical reference)
 
-- Face stock width ~50.8–54 mm (Resolution 740).
+- Face width 50.80–54.00 mm (Res 740). **Width is law; length (~53 cm) is convention** — set by loop geometry, not by spec.
 - Destination IATA code primary.
-- 10-digit LPN: lead + 3-digit issuer + 6-digit serial; Code 128; human digits under bars.
+- 10-digit LPN: lead digit (0 interline · 1 fallback · 2 RUSH) + 3-digit issuer code (BTIC, Res 769) + 6-digit serial; **Interleaved 2 of 5**; human digits under the bars.
+- Routing area lists final destination at the TOP, vias beneath it ordered first-transfer lowest — the list reads bottom-to-top in journey order.
+- Minimum type: routing area 4.1 mm, information area 3 mm (Res 740 via RP1754).
 - Airline + flight + date tertiary.
 - Passenger name fallback.
 - Stubs / claim backup.
@@ -133,10 +161,11 @@ Meaning and non-redundancy stay human questions.
 ## Critique checklist (all must pass)
 
 (a) PO completeness  
-(b) no noise  
+(b) no noise (decorative duplication fails; failure-model duplication is required)  
 (c) human hierarchy  
 (d) dual encoding  
 (e) size–domain coherence  
+(e2) **density and presence** — solid ink, reversal, tag-scale spacing, real barcodes  
 (f) material/lifecycle  
 (g) evolutionary readiness  
 
@@ -154,3 +183,4 @@ When generating UI or copy:
 2. Include markup comments for size + domain.
 3. Show a closed package (card, row, or log line), not a mood board.
 4. If asked for both a noisy version and a tag version, label Before (fails PO) and After (PO complete).
+5. **Ship it dense.** Load `components/tag-strip.css` for band / rail / perf / repeat, and `components/barcode.js` for real symbols. A correct-but-pale result is a failed result — see `docs/why-it-is-beautiful.md` and `examples/d-tag-strip/`.
