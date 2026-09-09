@@ -1,0 +1,119 @@
+<!-- SPDX-License-Identifier: MIT -->
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Example D — service status, ephemera skin</title>
+<link rel="stylesheet" href="../../components/tag-system.css">
+<link rel="stylesheet" href="../../components/stock-printed.css">
+<link rel="stylesheet" href="../../components/ephemera.css">
+<style>
+  body { padding: var(--tag-space-6) var(--tag-space-5); max-width: 60rem; margin: 0 auto; }
+  .doc-note { max-width: 36rem; font-size: var(--tag-size-context); line-height: 1.55; }
+  .doc-label { font-size: var(--printed-size-micro); letter-spacing: var(--printed-track-micro);
+               text-transform: uppercase; margin: var(--tag-space-6) 0 var(--tag-space-3); }
+  .surface { position: relative; padding: var(--tag-space-5) 0; }
+  .svc { display: grid; gap: var(--tag-space-4); }
+  .svc-row { position: relative; display: grid; grid-template-columns: auto 1fr auto;
+             gap: var(--printed-pad); align-items: center;
+             border: var(--printed-rule) solid var(--ink-black); background: var(--stock-cream);
+             padding: var(--printed-pad); }
+  .svc-name { font-family: var(--tag-font-dest); font-size: clamp(2rem, 9cqi, 3.25rem);
+              line-height: .9; letter-spacing: -.03em; text-transform: uppercase; margin: 0; }
+  .svc-meta { font-family: var(--tag-font-mono); font-size: var(--printed-size-context);
+              letter-spacing: var(--printed-track-context); text-transform: uppercase; margin: .35rem 0 0; }
+  .svc-id { font-family: var(--tag-font-mono); font-size: 1rem; letter-spacing: .12em;
+            font-variant-numeric: var(--tag-tabular); margin: 0; }
+  .svc-fallback { font-family: var(--tag-font-mono); font-size: var(--printed-size-micro);
+                  letter-spacing: var(--printed-track-micro); text-transform: uppercase;
+                  opacity: .75; margin: .3rem 0 0; }
+</style>
+</head>
+<body class="tag-body">
+
+<h1 class="tag-h1">Example D — service status</h1>
+<p class="doc-lead tag-lead">The same four ranks as every other surface here, wearing the skin. Roughly two-thirds
+system, one-third ephemera. Every mark below records something that happened: a station handled it, a human
+overrode it, a stub was claimed. A mark whose event did not occur is decoration, and the auditor rejects it.
+Doctrine: <a href="../../docs/ephemera.md">docs/ephemera.md</a>.</p>
+
+<p class="doc-label">Production services · 09 SEP 26</p>
+
+<div class="surface svc">
+
+  <!-- ── healthy: the quiet case. System only, almost no skin. ────────── -->
+  <!-- size: primary · domain: service destination -->
+  <div class="svc-row eph-cut--notch" data-stock="printed" data-ink="olive"
+       style="border-inline-start: 10px solid var(--field)">
+    <span class="eph-eyelet" aria-hidden="true"></span>
+    <div>
+      <p class="svc-name">PAYMENTS</p>
+      <p class="svc-meta">Production · healthy · read-only fallback</p>
+    </div>
+    <div style="text-align:end">
+      <p class="svc-id">SRV-8F3D2C1A</p>
+      <p class="svc-fallback">Owner · platform</p>
+    </div>
+  </div>
+
+  <!-- ── degraded: a station handled it, so it carries a stamp ───────── -->
+  <!-- the ROW is not the handled object; the marks on it are. A primary block
+       never rotates — doctrine, docs/ephemera.md § composition. -->
+  <div class="svc-row eph-cut--notch" data-stock="printed" data-ink="orange"
+       style="border-inline-start: 10px solid var(--field)">
+    <span class="eph-eyelet" aria-hidden="true"></span>
+    <div>
+      <p class="svc-name">SEARCH</p>
+      <p class="svc-meta">Production · degraded · p99 1.8&nbsp;s</p>
+      <!-- event: an operator acknowledged this at 04:12 -->
+      <span class="eph-stamp" data-event="stamped">ACK 04:12</span>
+    </div>
+    <div style="text-align:end">
+      <p class="svc-id">SRV-2B7E90C4</p>
+      <p class="svc-fallback">Owner · search</p>
+    </div>
+  </div>
+
+  <!-- ── failing: a human overrode the machine, so there is handwriting ─ -->
+  <div class="svc-row eph-cut--stub" data-stock="printed" data-ink="rose"
+       style="border-inline-start: 10px solid var(--field)">
+    <span class="eph-eyelet" aria-hidden="true"></span>
+    <div>
+      <p class="svc-name">EXPORT</p>
+      <p class="svc-meta">Production · failing · queue 12&nbsp;400</p>
+      <!-- event: a human wrote an override at the gate -->
+      <span class="eph-hand" data-event="annotated">drain by hand — see INC-4471</span>
+    </div>
+    <div style="text-align:end">
+      <p class="svc-id">SRV-C10A55B2</p>
+      <p class="svc-fallback">Owner · data</p>
+    </div>
+  </div>
+
+</div>
+
+<!-- ── the claimed stub: a real detachment, so a real tear ───────────── -->
+<p class="doc-label">Incident stub · detached 04:31</p>
+<div class="eph-cut--angle" data-stock="printed" data-face="manila"
+     data-event="claimed"
+     style="max-width:22rem;border:var(--printed-rule) solid var(--ink-black);padding:var(--printed-pad)">
+  <hr class="eph-perf eph-perf--torn" data-event="claimed">
+  <p class="svc-name" style="font-size:2rem">INC-4471</p>
+  <p class="svc-meta">Export · failing · 04:31</p>
+  <div class="eph-serialbox" style="margin-top:.6rem;font-size:.8125rem">
+    <span>S</span><span>R</span><span>V</span><span>C</span><span>1</span><span>0</span><span>A</span>
+  </div>
+  <p class="svc-fallback" style="margin-top:.7rem">Held by · ARKARA / NON</p>
+</div>
+
+<p class="doc-note" style="margin-top:var(--tag-space-7)">
+<strong>Squint test.</strong> Blur the type until the words go. The service names must still be the first
+thing you see, straight and largest — the stamp, the handwriting and the torn stub are evidence, and evidence
+never outranks the destination. If a mark wins that test, the mark is wrong.
+</p>
+<p class="doc-note">Ids are synthetic. Gallery: <a href="../gallery/index.html">examples/gallery</a> ·
+Stock B: <a href="../../components/printed.html">components/printed.html</a></p>
+
+</body>
+</html>

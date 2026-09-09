@@ -3,7 +3,7 @@
 
 Run this on any closed package: physical tag, page, dashboard row, log line, PDF, slide, box.
 
-![PO completeness gate](../assets/diagrams/po-completeness-gate.svg)
+![PO completeness gate](../assets/diagrams/po-completeness-gate.webp)
 
 ## (a) PO completeness
 

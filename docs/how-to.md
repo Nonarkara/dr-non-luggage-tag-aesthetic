@@ -15,4 +15,4 @@ Load [`skill/white-baggage-tag-aesthetic/SKILL.md`](../skill/white-baggage-tag-a
 
 ## Mapping cheat sheet
 
-See [`hierarchy.md`](hierarchy.md) and the SVG [`website-dashboard-mapping.svg`](../assets/diagrams/website-dashboard-mapping.svg).
+See [`hierarchy.md`](hierarchy.md) and the SVG [`one-law-many-surfaces.webp`](../assets/diagrams/one-law-many-surfaces.webp).

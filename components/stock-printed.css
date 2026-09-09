@@ -1,0 +1,178 @@
+/* SPDX-License-Identifier: MIT */
+/* Stock B — printed tag surfaces. Load after tag-system.css.
+ * Every class maps to a zone or a press operation. Nothing here is ornament. */
+
+@import url("../design-tokens/stock-printed.css");
+
+/* ── The face ─────────────────────────────────────────────────────────── */
+.pt-face {
+  container-type: inline-size;   /* the face is the measuring frame */
+  position: relative;
+  width: min(100%, var(--printed-face-w));
+  background: var(--tag-ground);
+  color: var(--ink-black);
+  border: var(--printed-rule) solid var(--ink-black);
+  border-radius: 0;
+  padding: var(--printed-pad);
+  overflow: hidden;
+}
+
+/* The whole face carries the carrier field. This is the move a thermal
+   tag cannot make, and the reason a printed tag sorts without a scanner. */
+.pt-face--field {
+  background: var(--field);
+  color: var(--on-field);
+  border-color: var(--ink-black);
+}
+
+/* Two-tone split: two domains on one object (e.g. route + class). */
+.pt-face--split {
+  background: linear-gradient(
+    to bottom,
+    var(--field) 0 var(--pt-split, 46%),
+    var(--tag-ground) var(--pt-split, 46%) 100%
+  );
+  /* A hard two-stop gradient is a press split, not a blend — both stops
+     sit at the same position, so no colour transition is ever rendered. */
+}
+
+/* ── The punch and its reinforcement ring ─────────────────────────────── */
+.pt-punch {
+  width: var(--printed-punch);
+  height: var(--printed-punch);
+  border: var(--printed-punch-ring) solid currentColor;
+  border-radius: 50%;            /* a true circle carrying meaning */
+  margin: 0 auto var(--printed-pad);
+}
+
+/* ── Carrier livery band ──────────────────────────────────────────────── */
+/* Repeating stripes encode a carrier, the way a route colour does on a
+   transit diagram. Legitimate only when a carrier domain is declared. */
+.pt-band {
+  height: var(--printed-band);
+  background: repeating-linear-gradient(
+    90deg,
+    var(--field) 0 var(--printed-band-stripe),
+    var(--tag-ground) var(--printed-band-stripe) calc(var(--printed-band-stripe) * 2)
+  );
+  border-block: var(--printed-rule) solid var(--ink-black);
+}
+
+.pt-band--solid { background: var(--field); }
+
+/* ── Rank 1 — the destination, at press scale ─────────────────────────── */
+.pt-dest {
+  font-family: var(--tag-font-dest);
+  font-size: var(--printed-size-dest-fb);   /* no container-query support */
+  font-size: var(--printed-size-dest);
+  line-height: var(--printed-lh-dest);
+  letter-spacing: var(--printed-track-dest);
+  font-weight: var(--printed-weight-dest);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.pt-city {
+  font-family: var(--tag-font-body);
+  font-size: var(--printed-size-city);
+  letter-spacing: var(--printed-track-city);
+  text-transform: uppercase;
+  margin: 0.25em 0 0;
+}
+
+/* ── Rank 2 — the struck serial ───────────────────────────────────────── */
+/* The overprint is a second press pass. Slight misregistration is evidence
+   of process, not a distress effect. Keep it small or it becomes a costume. */
+.pt-serial {
+  font-family: var(--tag-font-mono);
+  font-size: var(--printed-size-serial);
+  letter-spacing: var(--printed-track-serial);
+  font-variant-numeric: var(--tag-tabular);
+  color: var(--ink-overprint);
+  transform: translate(var(--printed-overprint-x), var(--printed-overprint-y))
+             rotate(var(--printed-overprint-rot));
+  transform-origin: left center;
+  margin: 0;
+}
+
+.pt-serial--flat { transform: none; }
+
+/* On a solid field the overprint ink cannot be a second saturated colour —
+   red struck across orange is unreadable, and no press would attempt it.
+   Inside a field, the serial takes the ink that already survives that field. */
+.pt-face--field .pt-serial { color: var(--on-field); }
+
+/* A split face is only half field. Type below the line sits on the stock, so
+   it keeps the overprint ink; type above it must be coloured explicitly. */
+
+/* ── Rank 3 — context strip ───────────────────────────────────────────── */
+.pt-context {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--printed-pad);
+  font-size: var(--printed-size-context);
+  letter-spacing: var(--printed-track-context);
+  text-transform: uppercase;
+  border-top: var(--printed-rule) solid currentColor;
+  padding-top: 0.5rem;
+  margin: 0;
+}
+
+.pt-context dt { font-size: var(--printed-size-micro); letter-spacing: var(--printed-track-micro); opacity: 0.75; margin: 0; }
+.pt-context dd { margin: 0 0 0.35rem; font-variant-numeric: var(--tag-tabular); }
+
+/* ── Rank 4 — the human fallback ──────────────────────────────────────── */
+.pt-fallback {
+  font-size: var(--tag-size-fallback);
+  letter-spacing: var(--tag-track-fallback);
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+/* ── The second reading axis ──────────────────────────────────────────── */
+/* Vertical type does the job the 90°-offset barcode does on a thermal tag:
+   it gives a reader approaching from another angle a way in. Rotation that
+   only decorates fails the gate. */
+.pt-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: var(--printed-size-context);
+  letter-spacing: var(--printed-track-context);
+  text-transform: uppercase;
+}
+
+.pt-vertical--left { writing-mode: vertical-rl; transform: rotate(180deg); }
+
+/* ── The transfer arrow — a solid triangle, never a Unicode glyph ─────── */
+.pt-arrow {
+  display: inline-block;
+  width: 0; height: 0;
+  border-block: 0.32em solid transparent;
+  border-inline-start: 0.5em solid currentColor;
+  vertical-align: baseline;
+}
+
+/* ── Perforated tear line above a claim stub ──────────────────────────── */
+.pt-perf {
+  height: var(--printed-rule);
+  background: repeating-linear-gradient(
+    90deg,
+    currentColor 0 6px,
+    transparent 6px 12px
+  );
+  margin: var(--printed-pad) 0;
+  border: 0;
+}
+
+/* ── Layout: the tag row and the tag wall ─────────────────────────────── */
+.pt-wall {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
+  gap: var(--printed-pad);
+  align-items: start;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pt-serial { transform: none; }
+}

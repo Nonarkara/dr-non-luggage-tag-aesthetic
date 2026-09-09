@@ -496,12 +496,11 @@ if __name__ == "__main__":
     # sanity: checksum
     vals = code128_c_values(LPN)
     assert vals[-1] == 106
-    hero()
+    # Retired 2026-09-09: hero(), anatomy(), hierarchy(), po_gate() and
+    # mapping() are superseded by the illustrated WebP set in assets/. Their
+    # generator functions are kept for reference and for the barcode geometry
+    # they share, but running them would resurrect the replaced SVGs.
     mark()
     portrait_tag()
-    anatomy()
-    hierarchy()
-    po_gate()
-    mapping()
     evolution()
     print("LPN", LPN, "code128c", vals)

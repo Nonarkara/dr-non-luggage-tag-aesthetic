@@ -11,7 +11,7 @@ It is **not** an IATA manual, not an airline product, not a passenger database, 
 
 ## 15-minute human path
 
-1. Look at the hero: [`assets/hero-tag.svg`](assets/hero-tag.svg) — destination dominant, LPN/barcode second, stubs as backup.
+1. Look at the hero: [`assets/hero-tag.webp`](assets/hero-tag.webp) — destination dominant, LPN/barcode second, stubs as backup.
 2. Open [`examples/gallery/index.html`](examples/gallery/index.html) in a browser. No build.
 3. Pick a register — this aesthetic is not universal: [`docs/registers.md`](docs/registers.md).
 4. Read the gate: [`docs/critique-checklist.md`](docs/critique-checklist.md), and run its machine half: `node tools/tag-audit.mjs .`
@@ -32,6 +32,9 @@ It is **not** an IATA manual, not an airline product, not a passenger database, 
 | [`docs/philosophy.md`](docs/philosophy.md) | Why the tag is the law |
 | [`docs/lineage.md`](docs/lineage.md) | Why this is good design — Rams, Vignelli, and what the tag adds |
 | [`docs/registers.md`](docs/registers.md) | **When this aesthetic is wrong.** Read before any CSS |
+| [`docs/stocks.md`](docs/stocks.md) | Thermal or printed. Where the colour and the scale come from |
+| [`docs/ephemera.md`](docs/ephemera.md) | The skin — 65/35, stamps, handwriting, and why each mark records an event |
+| [`components/printed.html`](components/printed.html) | Stock B gallery — seven compositions |
 | [`docs/grid.md`](docs/grid.md) | Every edge resolves to another edge |
 | [`tools/tag-audit.mjs`](tools/tag-audit.mjs) | The gate, runnable. `--strict` in CI |
 | [`docs/anatomy.md`](docs/anatomy.md) | Eight zones |

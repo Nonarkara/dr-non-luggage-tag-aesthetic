@@ -1,6 +1,6 @@
 <!-- SPDX-License-Identifier: MIT -->
 <p align="center">
-  <img src="assets/hero-tag.svg" alt="White thermal baggage tag: destination BKK dominant, Interleaved 2 of 5 licence plate 0217123456 secondary, claim stubs as backup." width="100%">
+  <img src="assets/hero-tag.webp" alt="Baggage tag as an information system: destination BKK dominant, licence plate 0217123456 with barcode secondary, claim stubs as backup." width="100%">
 </p>
 
 # Dr Non’s Luggage Tag Aesthetic Design System
@@ -40,7 +40,14 @@ Why this object is worth treating as law — and where it goes further than Rams
 3. Durability (substrate, adhesive, contrast)
 4. Lifecycle (reuse, recycle, RFID/EBT only when justified)
 
-This is not decorative minimalism. It is the sticky loop on a suitcase handle: closed, complete, silent about everything that is not the bag.
+This is not decorative minimalism — and it is not austerity either. A 1968 tag is *maximally* disciplined and *maximally* characterful at once, because the character is carrying information. The roof it all sits under:
+
+1. **It works for both machines and humans.** Neither reader is the guest.
+2. **Information hierarchy and condensation.** The important thing first; the rest compacted and compartmentalised.
+3. **MoMA rules — strict, therefore communicative and structurally beautiful.**
+4. **Under that roof there is room for colour, composition, and character.**
+
+Rule 4 is the one most systems drop. Roughly **65% system, 35% travel ephemera** — stamps, handwriting, rotation, colour fields — where each mark records something that actually happened. See [`docs/ephemera.md`](docs/ephemera.md).
 
 Pilot Mark Vanhoenacker called the automated bag tag a masterpiece of design (*Slate*, 2012). [Nathan Yau / FlowingData](https://flowingdata.com/2012/10/18/masterful-design-of-the-everyday-baggage-tag/) relayed that reading: custom-printed destination and name, bar-coded license plate, still readable by hand when the belt is a black box. This repo treats that object as law.
 
@@ -77,7 +84,9 @@ node tools/tag-audit.mjs . --strict  # CI: exit 1 on errors
 
 …then [`docs/critique-checklist.md`](docs/critique-checklist.md) for the questions a machine cannot answer.
 
-**Pick a register before any CSS** — this aesthetic is not universal, and the wrong register is how it fails: [`docs/registers.md`](docs/registers.md).
+**Pick a stock, then a register, before any CSS.** Stock A is the white thermal tag — ground and ink, machine-first. Stock B is the printed tag — colour fields, extreme scale, composition as information, because there is no barcode to do the sorting: [`docs/stocks.md`](docs/stocks.md).
+
+**And pick a register** — this aesthetic is not universal, and the wrong register is how it fails: [`docs/registers.md`](docs/registers.md).
 
 Agents: read [`AGENTS.md`](AGENTS.md), then load the skill. Do not invent a palette.
 
@@ -85,13 +94,17 @@ Agents: read [`AGENTS.md`](AGENTS.md), then load the skill. Do not invent a pale
 
 ## Diagrams
 
-<p><img src="assets/diagrams/anatomy.svg" alt="Anatomy: eight tag zones, each a domain" width="100%"></p>
+<p><img src="assets/diagrams/anatomy.webp" alt="Anatomy of the tag: seven labelled zones — loop, perforation, destination code, context line, fallback name, barcode and stable id, claim stubs" width="100%"></p>
 
-<p><img src="assets/diagrams/human-scan-hierarchy.svg" alt="Scan order: destination, LPN, context, fallback, stubs" width="100%"></p>
+<p><img src="assets/diagrams/human-scan-hierarchy.webp" alt="Human scan hierarchy: destination, stable id, context, fallback name, stub backup, read in that order" width="100%"></p>
 
-<p><img src="assets/diagrams/po-completeness-gate.svg" alt="PO Completeness gate: meaning, non-redundancy, size-domain, or remove" width="100%"></p>
+<p><img src="assets/diagrams/po-completeness-gate.webp" alt="PO Completeness gate: name the domain, does the job fail if removed, is it already said by a stronger element — keep, merge, or delete" width="100%"></p>
 
-<p><img src="assets/diagrams/website-dashboard-mapping.svg" alt="Tag zones mapped to website, dashboard, docs, and log lines" width="100%"></p>
+<p><img src="assets/diagrams/one-law-many-surfaces.webp" alt="One law, many surfaces: the same service tag translated into a website status card, a dashboard row, a documentation header, and an API log line" width="100%"></p>
+
+<p><img src="assets/diagrams/spice-not-noise.webp" alt="Spice, not noise: good spice — one accent colour, a route arrow, a stamped mark, monospaced ids, honest paper wear. Bad noise — random gradients, rainbow accents, meaningless icons, filler slogans, glossy chrome" width="100%"></p>
+
+<p><img src="assets/diagrams/dual-encoding.svg" alt="Dual encoding: a bag on a conveyor passes two scanners at ninety degrees, so the key prints twice and a human can read it when neither scan fires" width="100%"></p>
 
 <p><img src="assets/diagrams/evolutionary-stack.svg" alt="Thermal paper to synthetic, laminate, freezer-grade, RFID, reusable EBT" width="100%"></p>
 
@@ -104,10 +117,12 @@ Portrait reference: [`assets/tag-portrait.svg`](assets/tag-portrait.svg) · Mark
 | Path | Job |
 |---|---|
 | [`design-tokens/`](design-tokens/) | CSS variables + JSON. Ground, ink, four ranks, spacing, mono, optional domain colours |
-| [`components/`](components/) | TagCard, DestinationHero, IdBlock, StatusStrip, StubBackup, DashboardRow |
+| [`design-tokens/stock-printed.css`](design-tokens/stock-printed.css) | **Stock B** — spot inks, press scale, livery bands, overprint |
+| [`design-tokens/ephemera.css`](design-tokens/ephemera.css) | **The skin** — vintage inks, stamps, handwriting, rotation, accumulation |
+| [`components/`](components/) | TagCard, DestinationHero, IdBlock, StatusStrip, StubBackup, DashboardRow — plus [`printed.html`](components/printed.html), the Stock B gallery |
 | [`examples/`](examples/) | (a) website status card (b) API / log line (c) doc header — before/after noise removal |
 | [`skill/white-baggage-tag-aesthetic/`](skill/white-baggage-tag-aesthetic/) | Agent-invocable skill v2.0 |
-| [`docs/`](docs/) | Philosophy, lineage, registers, anatomy, hierarchy, grid, checklist, 740/753 notes, evolution, sources |
+| [`docs/`](docs/) | Philosophy, lineage, registers, stocks, ephemera, anatomy, hierarchy, grid, checklist, 740/753 notes, evolution, sources |
 | [`tools/tag-audit.mjs`](tools/tag-audit.mjs) | The PO gate, made runnable. `--strict` for CI |
 | [`AGENTS.md`](AGENTS.md) · [`CLAUDE.md`](CLAUDE.md) | Agent spine; Claude Code auto-load |
 | [`CONTRIBUTING.md`](CONTRIBUTING.md) · [`SECURITY.md`](SECURITY.md) | Lightweight, honest |

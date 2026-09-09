@@ -3,7 +3,7 @@
 
 The white baggage tag is a **closed information package**. Every zone below is a domain. If a zone is on the object, it is required. If it is required, removing it breaks routing, claim, or audit.
 
-![Anatomy of the tag](../assets/diagrams/anatomy.svg)
+![Anatomy of the tag](../assets/diagrams/anatomy.webp)
 
 ## Zones
 

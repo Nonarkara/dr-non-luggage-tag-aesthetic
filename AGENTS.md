@@ -7,13 +7,38 @@
 
 ## The object
 
-A white airline baggage tag is a **closed information package under time pressure**. Not minimalism. Every property it has was forced by a failure mode, and the survivors are the design. Why that matters: [`docs/lineage.md`](docs/lineage.md).
+A white airline baggage tag is a **closed information package under time pressure**. Every property it has was forced by a failure mode, and the survivors are the design. Why that matters: [`docs/lineage.md`](docs/lineage.md).
+
+**It is not minimalism, and it is not austerity.** A 1968 tag is maximally disciplined and maximally characterful at once, because the character carries information. The roof:
+
+1. It works for both machines and humans.
+2. Information hierarchy and condensation — the important thing first.
+3. MoMA rules — strict, therefore communicative and structurally beautiful.
+4. **Under that roof there is room for colour, composition, and character.**
+
+Rule 4 is the one most often dropped, which produces acres of white space, one enormous thin word, and no information.
 
 ## 1. Pick the register first
 
 The tag aesthetic is **not universal**, and applying it to the wrong reader is the main way this system fails. Ask *who is reading this, and in what physical condition* — an operator at a desk, a citizen in sunlight, a minister in a projected room, someone with a long essay.
 
 Console and Index take it natively. Civic takes it with lower density and larger targets. **Editorial and Institutional do not** — a tag-styled deck reads as a receipt. See [`docs/registers.md`](docs/registers.md).
+
+## 1b. Then pick a stock
+
+**Stock A — thermal** (default): white face, ground and ink, machine-first. A barcode does the sorting; the human layer is the fallback. Everything below assumes this stock.
+
+**Stock B — printed**: two or three spot inks on coloured stock. **There is no barcode**, so colour, scale, and composition carry the sorting job a scanner does on Stock A. Declare `data-stock="printed"` and a `data-domain`.
+
+Stock B has *harder* limits, not fewer: three inks maximum counting the stock · flat colour only, a press cannot blend · every ink names a domain · the overprint is the only texture · rotation is a second reading axis, not a flourish · still four ranks, only a wider ratio. See [`docs/stocks.md`](docs/stocks.md).
+
+## 1c. Then decide how much skin
+
+Roughly **65% system, 35% ephemera** — stamps, handwriting, rotation, colour fields, irregular silhouettes.
+
+**A mark may appear only when the event it records actually happened.** A stamp means a station handled it. Handwriting means a human overrode the machine. A tear means a stub was claimed. Declare it: `data-event="stamped"`, `"annotated"`, `"claimed"`, `"handled"`.
+
+A mark with no event is manufactured wear, which is the opposite of what wear is for. The auditor rejects it. **Never rotate a primary block** — rotation is for stubs and secondary fragments; the thing you must read first is the thing that sits straight. See [`docs/ephemera.md`](docs/ephemera.md).
 
 ## 2. PO Completeness — the gate, run first
 
@@ -48,7 +73,7 @@ Default package is `--tag-ground` + `--tag-ink`. Do not invent a palette.
 
 - `border-radius` other than `0` or a true circle that carries meaning
 - `box-shadow` except `inset` and `:focus-visible` — printed ink casts none
-- Gradients between hues, `backdrop-filter`, glassmorphism, dark-glass inversion of the tag
+- Gradients that *blend*. A two-domain split uses hard stops that meet at one position (`A 0 46%, B 46% 100%`) — that is a press mark, not a gradient. `backdrop-filter`, glassmorphism, and dark-glass inversion stay banned outright
 - Inter, Roboto, Poppins, Montserrat, Open Sans, Lato, Geist, Space Grotesk
 - Emoji, sparkle pills, "Welcome back", slogans, motivational copy
 - A fifth type rank invented as "caption personality"

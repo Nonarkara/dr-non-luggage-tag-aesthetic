@@ -3,7 +3,7 @@
 
 Scan order under **time pressure** is the type scale. Machine-readability, durability, and lifecycle are always on, but they do not outrank the human destination.
 
-![Human scan hierarchy](../assets/diagrams/human-scan-hierarchy.svg)
+![Human scan hierarchy](../assets/diagrams/human-scan-hierarchy.webp)
 
 ## Four type ranks (mandatory)
 
@@ -38,7 +38,7 @@ A coloured left rule on a dashboard row means the domain is in the record. A col
 
 ## Interface mapping
 
-![Tag to UI mapping](../assets/diagrams/website-dashboard-mapping.svg)
+![Tag to UI mapping](../assets/diagrams/one-law-many-surfaces.webp)
 
 | Tag zone | Website | Dashboard | Docs | Log |
 |---|---|---|---|---|
