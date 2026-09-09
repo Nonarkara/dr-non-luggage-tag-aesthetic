@@ -1,0 +1,91 @@
+/* SPDX-License-Identifier: MIT */
+/* Dr Non's Luggage Tag Aesthetic — THE EPHEMERA SKIN.
+ *
+ * 1968 baggage room meets 2026 information system. ~65% system / 35% ephemera.
+ * Every mark here records an EVENT. A mark whose event did not happen is
+ * decoration in costume — see docs/ephemera.md.
+ *
+ * Load after tokens.css and stock-printed.css.
+ * The skin never overrides the skeleton: scan order, four ranks, and the
+ * contrast floors hold exactly as before.
+ */
+
+:root {
+  /* ── Vintage inks. ~40% of the surface; cream and black hold the other 60.
+   *    Faded = desaturated and lighter. Never translucent.               */
+  --eph-cyan:    #5f9ea3;   /* faded cyan — transfer, interline          */
+  --eph-orange:  #c2601f;   /* burnt orange — transit, expedite          */
+  --eph-mustard: #c9a227;   /* mustard — hold, cargo (DARK type only)    */
+  --eph-rose:    #b5697a;   /* dusty pink — charter, seasonal            */
+  --eph-olive:   #6a7245;   /* olive — domestic, ground handling         */
+  --eph-navy:    #1f3a63;   /* deep airline blue — trunk carrier         */
+
+  /* Stamp and biro sit outside the ink budget: they were applied later,
+     by a different device, which is why they are allowed to be a 4th mark. */
+  --eph-stamp:   #7d2f36;   /* rubber stamp, uneven                      */
+  --eph-biro:    #26324f;   /* ballpoint, a human at the gate            */
+  --eph-pencil:  #4a4a44;   /* grease pencil, handling floor             */
+
+  /* ── Accumulation. Handling, not styling. ─────────────────────────── */
+  --eph-rot-1: 2deg;        /* a stub that was handled                   */
+  --eph-rot-2: -3deg;
+  --eph-rot-3: 4deg;
+  --eph-rot-4: -2.5deg;
+
+  /* Press drift. A press drifts; it does not slide. 1–3px only. */
+  --eph-misreg-x: 2px;
+  --eph-misreg-y: -1px;
+
+  /* ── Marks ────────────────────────────────────────────────────────── */
+  --eph-stamp-border: 2.5px;
+  --eph-stamp-rot: -6deg;
+  --eph-stamp-ink: 0.82;    /* uneven ink coverage, via opacity          */
+
+  --eph-eyelet: 1.5rem;     /* punched reinforcement ring                */
+  --eph-eyelet-ring: 0.22rem;
+
+  --eph-regmark: 0.75rem;   /* registration cross — two passes aligned   */
+  --eph-regmark-w: 1.5px;
+
+  --eph-perf-dot: 5px;      /* perforation dash                          */
+  --eph-perf-gap: 5px;
+
+  --eph-diagonal: 34deg;    /* diagonal colour block                     */
+
+  /* ── Texture ceilings. Above these it stops being a print. ────────── */
+  --eph-fade-min: 0.72;     /* thermal fade floor — contrast still holds */
+  --eph-fibre: 0.05;        /* paper fibre overlay, never over an id     */
+
+  /* ── Handwriting ──────────────────────────────────────────────────── */
+  --eph-font-hand: "Bradley Hand", "Segoe Print", "Noteworthy", "Comic Sans MS", cursive;
+  --eph-font-slab: "Rockwell", "Roboto Slab", "Bitter", Georgia, serif;
+  --eph-size-hand: 0.9375rem;
+  --eph-hand-rot: -1.5deg;
+}
+
+/* ── Domain fields, vintage. Same contract as stock-printed.css.
+ *
+ * These carry [data-stock] so they match the guard's specificity exactly and
+ * win on order (this sheet loads later). Relying on the guard's :not() chain
+ * alone would make correctness depend on selector arithmetic — too brittle for
+ * a token layer other people extend.                                        */
+[data-stock][data-ink="cyan"]    { --field: var(--eph-cyan);    --on-field: var(--stock-cream); }
+[data-stock][data-ink="orange"]  { --field: var(--eph-orange);  --on-field: var(--stock-cream); }
+[data-stock][data-ink="rose"]    { --field: var(--eph-rose);    --on-field: var(--stock-cream); }
+[data-stock][data-ink="olive"]   { --field: var(--eph-olive);   --on-field: var(--stock-cream); }
+[data-stock][data-ink="navy"]    { --field: var(--eph-navy);    --on-field: var(--stock-cream); }
+/* Mustard takes dark type only — the same rule the NYCTA palette enforces. */
+[data-stock][data-ink="mustard"] { --field: var(--eph-mustard); --on-field: var(--ink-black); }
+
+/* ── The accent PAIR. A two-colour press job, declared per surface. ─── */
+[data-pair="navy-orange"]  { --pair-a: var(--eph-navy);  --pair-b: var(--eph-orange); }
+[data-pair="olive-rose"]   { --pair-a: var(--eph-olive); --pair-b: var(--eph-rose);   }
+[data-pair="cyan-mustard"] { --pair-a: var(--eph-cyan);  --pair-b: var(--eph-mustard);}
+
+/* Handled objects sit at an angle because a hand put them there. */
+[data-event="handled"] { transform: rotate(var(--eph-rot-1)); }
+[data-event="claimed"] { transform: rotate(var(--eph-rot-2)); }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-event] { transform: none; }
+}

@@ -263,6 +263,33 @@ function checkFieldContrast(text, rel) {
   return found;
 }
 
+/**
+ * The accumulation rule.
+ *
+ * Ephemera is evidence, not decoration. A stamp records that a station handled
+ * the object; handwriting records that a human overrode the machine; a tear
+ * records that a stub was claimed. So each mark declares the event it records.
+ *
+ * A mark with no event is manufactured wear — the thing wabi-sabi is not.
+ */
+const EVENT_MARKS = ['eph-stamp', 'eph-hand', 'eph-perf--torn', 'eph-fade', 'eph-stack'];
+
+function checkEphemeraEvents(text, rel) {
+  const found = [];
+  for (const m of text.matchAll(/<[a-z]+[^>]*\bclass="([^"]*)"[^>]*>/gi)) {
+    const cls = m[1];
+    const mark = EVENT_MARKS.find((k) => new RegExp(`\\b${k}\\b`).test(cls));
+    if (!mark) continue;
+    if (/\bdata-event="[a-z-]+"/.test(m[0])) continue;
+    found.push({
+      file: rel, line: text.slice(0, m.index).split('\n').length, col: 1, match: mark,
+      msg: `Ephemeral mark with no declared event. Add data-event="…" naming what happened, or remove the mark — evidence, not decoration (docs/ephemera.md).`,
+      severity: 'error',
+    });
+  }
+  return found;
+}
+
 async function collect(root) {
   const out = [];
   async function walk(dir) {
@@ -349,7 +376,7 @@ async function scanFile(file, root) {
 
   out.push(...checkHierarchy(text, rel), ...checkDomainColour(text, rel),
            ...checkGradients(text, rel), ...checkInkLimit(text, rel), ...checkOchre(text, rel),
-           ...checkFieldContrast(text, rel));
+           ...checkFieldContrast(text, rel), ...(ui ? checkEphemeraEvents(text, rel) : []));
   return out;
 }
 

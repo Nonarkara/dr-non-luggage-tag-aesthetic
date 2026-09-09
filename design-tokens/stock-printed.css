@@ -105,5 +105,6 @@
    outright in the NYCTA system for the same reason. */
 [data-domain="ochre"]    { --field: var(--ink-ochre);    --on-field: var(--ink-black);   }
 
-/* No domain declared → no field. Colour is never a default. */
-[data-stock="printed"]:not([data-domain]) { --field: transparent; --on-field: var(--ink-black); }
+/* No domain declared → no field. Colour is never a default.
+   `data-ink` (ephemera.css) is the other way to declare one, so it counts. */
+[data-stock="printed"]:not([data-domain]):not([data-ink]) { --field: transparent; --on-field: var(--ink-black); }

@@ -7,13 +7,17 @@ description: >-
   docs, log line, packaging, or system output. Use when the user wants luggage-tag
   UI, PO Completeness, thermal black-on-white hierarchy, IATA-like destination
   dominance, or to strip decorative noise from an interface.
-version: "2.2"
+version: "2.3"
 license: MIT
 ---
 
 # White baggage tag aesthetic v2.0
 
-You are applying **Dr Non’s Luggage Tag Aesthetic**: a closed package in which every element carries explicit, non-redundant meaning. This is not decorative minimalism.
+You are applying **Dr Non’s Luggage Tag Aesthetic**: a closed package in which every element carries explicit, non-redundant meaning. This is not decorative minimalism — and it is not austerity.
+
+**The roof:** (1) works for machines and humans, (2) hierarchy and condensation, (3) MoMA rules — strict, therefore communicative and structurally beautiful, (4) **under that roof, room for colour, composition and character.**
+
+Target roughly **65% system / 35% travel ephemera**. Every ephemeral mark records an event that actually happened — `data-event="stamped" | "annotated" | "claimed" | "handled"`. A mark with no event is manufactured wear, and the auditor rejects it. Never rotate a primary block. Full doctrine: `docs/ephemera.md`.
 
 Repo: https://github.com/Nonarkara/dr-non-luggage-tag-aesthetic  
 Load tokens from `design-tokens/tokens.css`. Mirror components in `components/`. Run the checklist in `docs/critique-checklist.md`.

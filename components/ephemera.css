@@ -1,0 +1,154 @@
+/* SPDX-License-Identifier: MIT */
+/* The ephemera skin. Load after stock-printed.css.
+ *
+ * Every class here renders EVIDENCE OF AN EVENT. Each carries a data-event in
+ * markup, and a mark without one is decoration — see docs/ephemera.md.
+ * Nothing here may cover the destination or make an id uncopyable. */
+
+@import url("../design-tokens/ephemera.css");
+
+/* ── Irregular silhouettes. A tag is die-cut, not a rectangle. ───────── */
+.eph-cut--notch {
+  clip-path: polygon(0 0, 100% 0, 100% calc(100% - 1.25rem), calc(100% - 1.25rem) 100%, 0 100%);
+}
+.eph-cut--tab {
+  clip-path: polygon(0 1.75rem, 1.5rem 0, 100% 0, 100% 100%, 0 100%);
+}
+.eph-cut--stub {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 1.25rem 100%, 0 calc(100% - 1.25rem));
+}
+.eph-cut--angle {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 calc(100% - 2rem));
+}
+
+/* ── The eyelet. A punched, reinforced hole — where the loop goes. ───── */
+.eph-eyelet {
+  width: var(--eph-eyelet);
+  height: var(--eph-eyelet);
+  border: var(--eph-eyelet-ring) solid currentColor;
+  border-radius: 50%;                 /* a true circle carrying meaning */
+  background: var(--tag-ground);
+  flex: none;
+}
+
+/* ── Rubber stamp. Event: a station handled this object. ─────────────── */
+.eph-stamp {
+  display: inline-block;
+  border: var(--eph-stamp-border) solid var(--eph-stamp);
+  color: var(--eph-stamp);
+  opacity: var(--eph-stamp-ink);      /* uneven ink, not transparency as style */
+  padding: 0.2em 0.5em;
+  font-family: var(--tag-font-mono);
+  font-size: var(--printed-size-micro, 0.625rem);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transform: rotate(var(--eph-stamp-rot));
+  white-space: nowrap;
+}
+.eph-stamp--round { border-radius: 50%; padding: 0.75em 0.5em; aspect-ratio: 1; display: grid; place-items: center; }
+
+/* ── Handwriting. Event: a human overrode or annotated the machine. ──── */
+.eph-hand {
+  font-family: var(--eph-font-hand);
+  font-size: var(--eph-size-hand);
+  color: var(--eph-biro);
+  transform: rotate(var(--eph-hand-rot));
+  display: inline-block;
+}
+.eph-hand--pencil { color: var(--eph-pencil); }
+
+/* ── Registration cross. Event: two press passes aligned. ────────────── */
+.eph-regmark {
+  width: var(--eph-regmark);
+  height: var(--eph-regmark);
+  flex: none;
+  background:
+    linear-gradient(currentColor 0 0) center / 100% var(--eph-regmark-w) no-repeat,
+    linear-gradient(currentColor 0 0) center / var(--eph-regmark-w) 100% no-repeat;
+  opacity: 0.65;
+}
+
+/* ── Serial box. A number the handling system wrote into a printed box. ─ */
+.eph-serialbox {
+  display: inline-flex;
+  gap: 0;
+  font-family: var(--tag-font-mono);
+  font-variant-numeric: var(--tag-tabular);
+}
+.eph-serialbox > span {
+  border: 1px solid currentColor;
+  border-inline-start-width: 0;
+  padding: 0.15em 0.35em;
+}
+.eph-serialbox > span:first-child { border-inline-start-width: 1px; }
+
+/* ── Diagonal colour block. A press laid one field at an angle. ──────── */
+.eph-diagonal {
+  position: absolute;
+  inset: 0;
+  background: var(--pair-a, var(--field));
+  clip-path: polygon(0 0, 100% 0, 100% 38%, 0 72%);
+  z-index: 0;
+}
+.eph-diagonal--low { clip-path: polygon(0 62%, 100% 28%, 100% 100%, 0 100%); background: var(--pair-b, var(--field)); }
+
+/* ── Route line. The path the object travelled. ──────────────────────── */
+.eph-route {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--tag-font-mono);
+  font-size: var(--printed-size-micro, 0.625rem);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+.eph-route::before,
+.eph-route::after { content: ""; height: 1px; background: currentColor; flex: 1; }
+.eph-route__stop { width: 0.4rem; height: 0.4rem; border: 1.5px solid currentColor; border-radius: 50%; flex: none; }
+
+/* ── Perforation. Event: a stub was detached here. ───────────────────── */
+.eph-perf {
+  height: 1px;
+  border: 0;
+  background: repeating-linear-gradient(
+    90deg,
+    currentColor 0 var(--eph-perf-dot),
+    transparent var(--eph-perf-dot) calc(var(--eph-perf-dot) + var(--eph-perf-gap))
+  );
+  opacity: 0.7;
+  margin: 0;
+}
+/* A tear only appears where a tear would actually occur — at a perforation. */
+.eph-perf--torn { clip-path: polygon(0 0, 62% 0, 64% 100%, 0 100%); }
+
+/* ── Thermal fade. Event: age, heat, or a worn head. Contrast still holds. */
+.eph-fade { opacity: var(--eph-fade-min); }
+
+/* ── The stack. Fragments that accumulated; the last one sits on top. ── */
+.eph-stack { position: relative; display: grid; }
+.eph-stack > * { grid-area: 1 / 1; }
+.eph-stack > :nth-child(1) { transform: rotate(var(--eph-rot-2)) translate(-6%, 4%); }
+.eph-stack > :nth-child(2) { transform: rotate(var(--eph-rot-3)) translate(5%, -3%); }
+.eph-stack > :nth-child(3) { transform: rotate(var(--eph-rot-4)) translate(-2%, 7%); }
+.eph-stack > :last-child   { transform: none; }   /* applied last, reads first */
+
+/* ── Cropping at the frame. Part of a larger pile, not a specimen. ───── */
+.eph-bleed { margin-inline-end: -12%; }
+.eph-bleed--start { margin-inline-start: -14%; }
+
+/* ── Paper fibre. Never over a destination or an id. ─────────────────── */
+.eph-fibre { position: relative; }
+.eph-fibre::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: var(--eph-fibre);
+  background-image:
+    repeating-linear-gradient(97deg, #000 0 1px, transparent 1px 3px),
+    repeating-linear-gradient(3deg, #000 0 1px, transparent 1px 4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .eph-stamp, .eph-hand, .eph-stack > * { transform: none; }
+}

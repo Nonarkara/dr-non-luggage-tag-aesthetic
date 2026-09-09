@@ -7,7 +7,16 @@
 
 ## The object
 
-A white airline baggage tag is a **closed information package under time pressure**. Not minimalism. Every property it has was forced by a failure mode, and the survivors are the design. Why that matters: [`docs/lineage.md`](docs/lineage.md).
+A white airline baggage tag is a **closed information package under time pressure**. Every property it has was forced by a failure mode, and the survivors are the design. Why that matters: [`docs/lineage.md`](docs/lineage.md).
+
+**It is not minimalism, and it is not austerity.** A 1968 tag is maximally disciplined and maximally characterful at once, because the character carries information. The roof:
+
+1. It works for both machines and humans.
+2. Information hierarchy and condensation — the important thing first.
+3. MoMA rules — strict, therefore communicative and structurally beautiful.
+4. **Under that roof there is room for colour, composition, and character.**
+
+Rule 4 is the one most often dropped, which produces acres of white space, one enormous thin word, and no information.
 
 ## 1. Pick the register first
 
@@ -22,6 +31,14 @@ Console and Index take it natively. Civic takes it with lower density and larger
 **Stock B — printed**: two or three spot inks on coloured stock. **There is no barcode**, so colour, scale, and composition carry the sorting job a scanner does on Stock A. Declare `data-stock="printed"` and a `data-domain`.
 
 Stock B has *harder* limits, not fewer: three inks maximum counting the stock · flat colour only, a press cannot blend · every ink names a domain · the overprint is the only texture · rotation is a second reading axis, not a flourish · still four ranks, only a wider ratio. See [`docs/stocks.md`](docs/stocks.md).
+
+## 1c. Then decide how much skin
+
+Roughly **65% system, 35% ephemera** — stamps, handwriting, rotation, colour fields, irregular silhouettes.
+
+**A mark may appear only when the event it records actually happened.** A stamp means a station handled it. Handwriting means a human overrode the machine. A tear means a stub was claimed. Declare it: `data-event="stamped"`, `"annotated"`, `"claimed"`, `"handled"`.
+
+A mark with no event is manufactured wear, which is the opposite of what wear is for. The auditor rejects it. **Never rotate a primary block** — rotation is for stubs and secondary fragments; the thing you must read first is the thing that sits straight. See [`docs/ephemera.md`](docs/ephemera.md).
 
 ## 2. PO Completeness — the gate, run first
 

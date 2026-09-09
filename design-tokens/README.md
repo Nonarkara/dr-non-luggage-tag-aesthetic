@@ -24,4 +24,4 @@ Gradients, radius scales, shadow elevations, brand rainbows, dark-mode inversion
 
 ## Mapping
 
-See [`../docs/hierarchy.md`](../docs/hierarchy.md) and [`../assets/diagrams/website-dashboard-mapping.svg`](../assets/diagrams/website-dashboard-mapping.svg).
+See [`../docs/hierarchy.md`](../docs/hierarchy.md) and [`../assets/diagrams/one-law-many-surfaces.webp`](../assets/diagrams/one-law-many-surfaces.webp).
