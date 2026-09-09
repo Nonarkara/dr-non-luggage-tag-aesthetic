@@ -15,7 +15,8 @@ Run this on any closed package: physical tag, page, dashboard row, log line, PDF
 
 - [ ] No filler, motivational, or marketing sentences.
 - [ ] No decorative illustration that does not encode a domain.
-- [ ] No duplicate of a stronger element (pretty city name repeating BKK without a second job).
+- [ ] No duplicate of a stronger element **for decorative reasons** (pretty city name repeating BKK without a second job).
+- [ ] Repetition that *is* present serves tear-tolerance or an orthogonal read path — see (d). Note that (b) and (d) pulled against each other in v2: one forbade duplication while the other demanded backup. Decorative duplication fails; failure-model duplication is required.
 - [ ] No emoji, sparkle, or “welcome back”.
 
 ## (c) Human hierarchy
@@ -36,6 +37,16 @@ Run this on any closed package: physical tag, page, dashboard row, log line, PDF
 
 - [ ] Visual weight matches scan order. No inverted hierarchy.
 - [ ] Domain colour, if any, matches a real domain (priority / crew / hazard) and is documented in markup.
+
+## (e2) Density and presence
+
+The gate v2 was missing, and the reason its output read as minimalism.
+
+- [ ] The package carries **solid ink**, not only hairlines and type. Bands, filled sequence boxes, barcode blocks.
+- [ ] Type that needs to outrank its neighbours is **reversed out of a band** before it is made bigger. Reversal is free hierarchy; size is expensive.
+- [ ] Spacing inside the object uses the **tag scale** (`--tag-gutter`, `--tag-gap-zone`), not the page scale (`--tag-space-5`+). Content runs to the edge.
+- [ ] Squint at it. If it reads as a pale panel rather than a printed object, it fails, however correct the hierarchy is.
+- [ ] Barcodes are **real encodings** of the id (`components/barcode.js`), not gradients that look like barcodes. A decorative barcode concedes that the marks are ornamental, which is the opposite of this system's claim.
 
 ## (f) Material / lifecycle
 

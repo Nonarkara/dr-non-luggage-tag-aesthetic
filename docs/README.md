@@ -11,3 +11,5 @@ Read in this order if you are designing, not browsing:
 6. [`standards-740-753.md`](standards-740-753.md)
 7. [`evolution.md`](evolution.md)
 8. [`sources.md`](sources.md)
+- [`history.md`](history.md) — where the object came from, with myths flagged
+- [`why-it-is-beautiful.md`](why-it-is-beautiful.md) — the mechanisms, and where the old doctrine was wrong
