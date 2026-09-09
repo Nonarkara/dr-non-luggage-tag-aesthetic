@@ -193,15 +193,14 @@ body.tag-body {
 /* —— StubBackup —— size: stub · domain: claim / receipt / audit copy */
 .tag-stubs {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(8.5rem, 1fr));
-  gap: var(--tag-space-2);
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: var(--tag-space-1);
   margin: 0;
 }
 
 .tag-stub {
   border: var(--tag-rule-width) solid var(--tag-rule);
-  padding: var(--tag-space-2);
-  min-height: 5.5rem;
+  padding: var(--tag-space-1) var(--tag-space-2);
 }
 
 .tag-stub strong {
@@ -217,15 +216,49 @@ body.tag-body {
   letter-spacing: 0.08em;
 }
 
-/* —— TagCard: closed package —— */
+/* —— TagCard: closed package ——
+   v3: tightened and given ink. v2 used page-scale padding (1.5rem) and a 1rem
+   gap inside a 40rem box, with no solid fill anywhere, so the card read as a
+   roomy panel rather than a printed object. Density is not decoration here —
+   see docs/why-it-is-beautiful.md. */
 .tag-card {
   background: var(--tag-ground-strict);
   border: 2px solid var(--tag-ink);
-  padding: var(--tag-pad);
+  padding: var(--tag-space-2);
   display: grid;
-  gap: var(--tag-space-4);
+  gap: var(--tag-space-2);
   position: relative;
-  max-width: 40rem;
+  max-width: 30rem;
+  overflow: hidden; /* lets the destination band bleed to the card edge */
+}
+
+/* Routing rail on the card, matching the strip. Full-bleed left edge. */
+.tag-card[data-rail]::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  width: var(--tag-rail-width);
+  background: var(--tag-rail, var(--tag-ink));
+}
+
+.tag-card[data-rail] { padding-inline-start: calc(var(--tag-rail-width) + var(--tag-space-2)); }
+
+/* The destination becomes the band: solid ink, type reversed, bled to the
+   edges. This is the single highest-yield change — it is what takes a card
+   from ~4% ink to something that reads as printed. */
+.tag-card .tag-dest {
+  background: var(--tag-reverse-ground);
+  color: var(--tag-reverse-ink);
+  margin-inline: calc(-1 * var(--tag-space-2));
+  padding: var(--tag-space-2);
+  font-size: clamp(2.75rem, 11vw, 4.75rem);
+  line-height: 0.84;
+}
+
+.tag-card[data-rail] .tag-dest {
+  margin-inline-start: calc(-1 * (var(--tag-rail-width) + var(--tag-space-2)));
+  padding-inline-start: calc(var(--tag-rail-width) + var(--tag-space-2));
 }
 
 .tag-card::before {
@@ -236,15 +269,14 @@ body.tag-body {
   border: 2px solid var(--tag-ink);
   border-radius: 50%;
   position: absolute;
-  top: var(--tag-space-3);
-  left: var(--tag-space-3);
+  top: var(--tag-space-2);
+  right: var(--tag-space-2);
   box-shadow: inset 0 0 0 4px var(--tag-ground-strict);
 }
 
 .tag-card-face {
-  padding-left: var(--tag-space-6);
   display: grid;
-  gap: var(--tag-space-3);
+  gap: var(--tag-space-2);
 }
 
 .tag-card[data-domain]:not([data-domain="default"]),

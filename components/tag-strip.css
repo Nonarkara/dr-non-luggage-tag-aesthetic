@@ -1,0 +1,252 @@
+/* SPDX-License-Identifier: MIT */
+/* Strip anatomy — the parts of a real tag that v2 left out.
+ *
+ * v2 modelled the tag as a card: landscape, 40rem wide, one hairline border,
+ * generous padding, zero solid fill. That is a different object. This sheet
+ * adds the four devices that actually carry a bag tag's look:
+ *
+ *   1. BAND      solid ink, type reversed out. Loud without getting bigger.
+ *   2. RAIL      full-bleed routing colour, readable across a baggage hall.
+ *   3. PERF      tear/fold boundary. Divides zones without spending whitespace.
+ *   4. REPEAT    the same id printed again and again down the strip.
+ *
+ * (4) is the one that contradicts v2's doctrine. "PO Completeness" said every
+ * element must be non-redundant — but a bag tag repeats its licence plate five
+ * or six times on purpose, because the strip gets torn, soaked and abraded and
+ * any surviving fragment must still identify the bag. Redundancy here is not
+ * waste, it is the failure model. It also happens to supply the rhythm that
+ * makes the object beautiful. See docs/why-it-is-beautiful.md.
+ */
+
+@import url("../design-tokens/tokens.css");
+
+/* ---- The strip ---- */
+.tag-strip {
+  /* NB: do not declare --tag-rail here. The [data-rail="…"] rules in tokens.css
+     set it on this same element, and a self-referential fallback
+     (--tag-rail: var(--tag-rail, …)) is a cycle, which makes the custom
+     property guaranteed-invalid and silently kills every rail. Fall back at the
+     point of use instead. */
+  position: relative;
+  width: min(100%, var(--tag-strip-width));
+  min-width: min(100%, var(--tag-face-min)); /* 50.8mm: the real printable floor */
+  background: var(--tag-ground-strict);
+  border: var(--tag-rule-width) solid var(--tag-ink);
+  color: var(--tag-ink);
+  font-family: var(--tag-font-body);
+  display: flex;
+  flex-direction: column;
+  /* Content runs to the die-cut edge. The rail owns the outer margin. */
+  padding-inline: var(--tag-rail-width-strip);
+}
+
+/* Full-bleed routing rails, both edges, full height. Not an accent border:
+   at three metres the colour is the only thing still resolving. */
+.tag-strip[data-rail]::before,
+.tag-strip[data-rail]::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  width: var(--tag-rail-width-strip);
+  background: var(--tag-rail, var(--tag-ink));
+}
+
+.tag-strip[data-rail]::before { inset-inline-start: 0; }
+.tag-strip[data-rail]::after  { inset-inline-end: 0; }
+
+/* Full-length variant. A real IATA tag is roughly 1:9 — about 2in wide and
+   20in long — because most of that length is the doubled-over sticky section
+   and the repeated stubs, not extra whitespace. The default strip above is the
+   printed information zone only, which is what fits in a shelf or a card grid.
+   Use data-format="full" for a hero, a poster, or a print mock, and fill the
+   extra length with more repeats — never by opening up the gaps. */
+.tag-strip[data-format="full"] {
+  min-height: calc(var(--tag-strip-width) / (var(--tag-strip-ratio)));
+  justify-content: space-between;
+}
+
+/* ---- Zones ---- */
+.tag-zone {
+  padding: var(--tag-pad-zone) var(--tag-gutter);
+  display: grid;
+  gap: var(--tag-gap-tight);
+}
+
+.tag-zone + .tag-zone {
+  border-top: var(--tag-rule-hair) solid var(--tag-ink);
+}
+
+/* Perforation: a real tear line, not a hairline rule. Reads as "this part
+   detaches" — which is what a claim stub is. */
+.tag-perf {
+  border-top: 0;
+  position: relative;
+  margin-top: var(--tag-gap-zone);
+  padding-top: calc(var(--tag-gap-zone) + 2px);
+}
+
+.tag-perf::before {
+  content: "";
+  position: absolute;
+  inset-inline: calc(-1 * var(--tag-gutter));
+  top: 0;
+  height: 2px;
+  background-image: repeating-linear-gradient(
+    90deg,
+    var(--tag-ink) 0 4px,
+    transparent 4px 8px
+  );
+}
+
+/* ---- Band: solid ink, reversed type ----
+   The cheapest hierarchy jump available. Same point size, twice the presence. */
+.tag-band {
+  background: var(--tag-reverse-ground);
+  color: var(--tag-reverse-ink);
+  padding: var(--tag-gap-zone) var(--tag-gutter);
+  margin-inline: calc(-1 * var(--tag-gutter));
+  display: grid;
+  gap: var(--tag-gap-tight);
+}
+
+.tag-band .tag-dest,
+.tag-band .tag-id,
+.tag-band .tag-fallback { color: var(--tag-reverse-ink); }
+
+/* A band can take the routing colour instead of ink when the routing state is
+   the single most urgent fact on the object (hazard, expedite). */
+.tag-band[data-band="rail"] { background: var(--tag-rail, var(--tag-ink)); }
+
+/* ---- Destination inside a strip ----
+   Fills the measure edge to edge. On a real tag the code is set to the width
+   of the stock, not to a comfortable margin. */
+.tag-strip .tag-dest {
+  font-size: clamp(2.75rem, 22vw, 4.5rem);
+  line-height: 0.78;
+  letter-spacing: -0.055em;
+  margin: 0;
+}
+
+/* ---- Sequence box: small number, solid box, reversed ----
+   The "080" / "277" / "070" on a real tag: bag n-of-m, or the routing
+   sequence. Tiny, boxed, and unmissable because of the fill. */
+.tag-seq {
+  display: inline-block;
+  background: var(--tag-ink);
+  color: var(--tag-reverse-ink);
+  font-family: var(--tag-font-mono);
+  font-size: var(--tag-size-lpn);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  font-variant-numeric: var(--tag-tabular);
+  padding: 0.05em 0.35em;
+  line-height: 1.15;
+}
+
+.tag-seq[data-rail-fill="true"] { background: var(--tag-rail, var(--tag-ink)); }
+
+/* ---- Vertical type ----
+   Rotation is free hierarchy: identical size, different axis, therefore a
+   different domain. Real tags run the routing serial up the side of the code. */
+.tag-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: var(--tag-font-mono);
+  font-size: var(--tag-size-context);
+  letter-spacing: 0.22em;
+  font-variant-numeric: var(--tag-tabular);
+  line-height: 1;
+  margin: 0;
+}
+
+/* Destination + rotated serial, the way the real object sets it. */
+.tag-dest-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: stretch;
+  gap: var(--tag-gap-tight);
+}
+
+/* ---- Repeat block: the same id, again ----
+   Not a copy-paste mistake. Tear-tolerance, and the visual rhythm of the strip. */
+.tag-repeat {
+  display: grid;
+  gap: 0;
+  font-family: var(--tag-font-mono);
+  font-size: var(--tag-size-stub);
+  letter-spacing: 0.06em;
+  font-variant-numeric: var(--tag-tabular);
+}
+
+.tag-repeat > * {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--tag-gap-zone);
+  padding: 0.15rem var(--tag-gutter);
+  margin-inline: calc(-1 * var(--tag-gutter));
+  border-top: var(--tag-rule-hair) solid var(--tag-ink);
+}
+
+.tag-repeat > *:first-child { border-top: 0; }
+
+/* ---- Barcode block ---- */
+.tag-barcode-block {
+  display: grid;
+  gap: 0.15rem;
+  justify-items: center;
+  padding-block: var(--tag-gap-zone);
+}
+
+.tag-barcode-block svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.tag-barcode-hr {
+  font-family: var(--tag-font-mono);
+  font-size: var(--tag-size-meta);
+  letter-spacing: 0.3em;
+  font-variant-numeric: var(--tag-tabular);
+  /* Human-readable interpretation sits under the symbol — mandatory on a real
+     tag so a person can key the number when the scanner fails. */
+}
+
+[data-barcode-error="true"] {
+  font-family: var(--tag-font-mono);
+  font-size: var(--tag-size-meta);
+  color: var(--tag-rail-hazard);
+  border: var(--tag-rule-hair) solid var(--tag-rail-hazard);
+  padding: var(--tag-gap-tight);
+}
+
+/* ---- Meta line: the tiny all-caps facts ---- */
+.tag-microline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--tag-gap-zone);
+  font-family: var(--tag-font-mono);
+  font-size: var(--tag-size-meta);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-variant-numeric: var(--tag-tabular);
+  margin: 0;
+}
+
+.tag-microline dt {
+  font-weight: 700;
+  opacity: 0.66;
+}
+
+.tag-microline dd {
+  margin: 0;
+  font-weight: 700;
+}
+
+/* ---- Strip shelf: several strips side by side ---- */
+.tag-shelf {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--tag-space-5);
+  align-items: flex-start;
+}
